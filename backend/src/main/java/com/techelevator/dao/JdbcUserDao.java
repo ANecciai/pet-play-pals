@@ -86,12 +86,27 @@ public class JdbcUserDao implements UserDao {
         return userCreated;
     }
 
+    @Override
+    public void updateUser(User user, Long userId) {
+        String sql = "UPDATE user SET username = ?, password_hash = ?, " +
+                "role = ?, zip_code = ?";
+        jdbcTemplate.update(sql, user.getUsername(), user.getPassword(), user.getAuthorities(), user.getZipCode(), userId);
+    }
+
+    @Override
+    public void deleteUser(User user, Long userId) {
+        String deleteUser = ("DELETE FROM user WHERE user_id = ?");
+        jdbcTemplate.update(deleteUser, userId);
+
+    }
+
     private User mapRowToUser(SqlRowSet rs) {
         User user = new User();
         user.setId(rs.getLong("user_id"));
         user.setUsername(rs.getString("username"));
         user.setPassword(rs.getString("password_hash"));
         user.setAuthorities(rs.getString("role"));
+        user.setZipCode(rs.getInt("zip_code"));
         user.setActivated(true);
         return user;
     }

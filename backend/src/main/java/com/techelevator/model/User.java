@@ -8,6 +8,8 @@ import java.util.Set;
 
 public class User {
 
+   private int zipCode;
+
    private Long id;
    private String username;
    @JsonIgnore
@@ -63,6 +65,13 @@ public class User {
 
    public void setAuthorities(Set<Authority> authorities) {
       this.authorities = authorities;
+   }
+   public int getZipCode() {
+      return zipCode;
+   }
+
+   public void setZipCode(int zipCode) {
+      this.zipCode = zipCode;
    }
 
    public void setAuthorities(String authorities) {
