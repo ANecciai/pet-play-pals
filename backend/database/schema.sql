@@ -72,6 +72,7 @@ INSERT INTO playdate_status (status_type) VALUES ('Accepted');
 INSERT INTO playdate_status (status_type) VALUES ('Pending');
 INSERT INTO playdate_status (status_type) VALUES ('Declined');
 COMMIT TRANSACTION;
+<<<<<<< HEAD
 
 
 
@@ -82,3 +83,5 @@ COMMIT TRANSACTION;
 
 
 
+=======
+>>>>>>> da96acd52258c3ab2dddc243aaed02a158d1e3b7
