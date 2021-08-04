@@ -13,6 +13,10 @@ import java.util.List;
 public class JdbcProfileDao implements ProfileDao {
     private JdbcTemplate jdbcTemplate;
 
+    public JdbcProfileDao(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
 
     @Override
     public Profile getProfileById(int profileId) {
@@ -103,6 +107,7 @@ public class JdbcProfileDao implements ProfileDao {
     private Profile mapRowToProfile(SqlRowSet rs) {
         Profile profile = new Profile();
         profile.setProfileId(rs.getInt("profile_id"));
+        profile.setUsername(rs.getString("username"));
         profile.setFirstName(rs.getString("first_name"));
         profile.setLastName(rs.getString("last_name"));
         profile.setZipcode(rs.getInt("zipcode"));
