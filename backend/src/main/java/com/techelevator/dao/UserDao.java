@@ -21,7 +21,7 @@ public interface UserDao {
 
     void updateUserAsAdmin(User user, Long userId);
 
-    void updateUser(Principal currentUser, User user);
+    void updateUser(String currentUser, User user);
 
     void deleteUser(Principal currentUser);
 
