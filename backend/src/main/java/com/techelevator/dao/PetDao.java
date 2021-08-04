@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import com.techelevator.model.Pet;
 
+import java.security.Principal;
 import java.util.List;
 
 public interface PetDao {
@@ -16,7 +17,7 @@ public interface PetDao {
 
     void createPet(String name, String username, String species, String gender);
 
-    void updatePet(Pet pet, int petId);
+    void updatePet(Pet pet, int petId, Principal currentUser);
 
     void deletePet(int petId);
 }

@@ -1,5 +1,6 @@
 package com.techelevator.dao;
 
+import java.security.Principal;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,10 +10,11 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.techelevator.model.User;
-
+@Component
 @Service
 public class JdbcUserDao implements UserDao {
 
@@ -62,7 +64,20 @@ public class JdbcUserDao implements UserDao {
         throw new UsernameNotFoundException("User " + username + " was not found.");
     }
 
+
     @Override
+    public List<User> findByZip(int zip){
+        List<User> users = new ArrayList<>();
+        String sql = "SELECT * FROM users WHERE zip_code = ?";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, zip);
+        while(rowSet.next()){
+            User user = mapRowToUser(rowSet);
+            users.add(user);
+        }
+        return users;
+    }
+
+
     public boolean create(String username, String password, String role) {
         boolean userCreated = false;
 
@@ -87,18 +102,31 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
-    public void updateUser(User user, Long userId) {
-        String sql = "UPDATE user SET username = ?, password_hash = ?, " +
+    public void updateUserAsAdmin(User user, Long userId) {
+        String sql = "UPDATE users SET username = ?, password_hash = ?, " +
                 "role = ?, zip_code = ?";
         jdbcTemplate.update(sql, user.getUsername(), user.getPassword(), user.getAuthorities(), user.getZipCode(), userId);
     }
 
     @Override
-    public void deleteUser(User user, Long userId) {
-        String deleteUser = ("DELETE FROM user WHERE user_id = ?");
+    public void updateUser(Principal currentUser, User user){
+        String sql = "UPDATE users SET username = ?, password_hash = ?, first_name = ?, last_name = ?, zip_code = ?, role = ? WHERE username = ?";
+        jdbcTemplate.update(sql, user.getUsername(), user.getPassword(), user.getFirstName(), user.getLastName(), user.getZipCode(), user.getAuthorities(), user, currentUser.getName());
+    }
+
+
+    @Override
+    public void deleteUserAsAdmin(Long userId) {
+        String deleteUser = ("DELETE FROM users WHERE user_id = ?");
         jdbcTemplate.update(deleteUser, userId);
 
     }
+
+    @Override
+    public void deleteUser(Principal currentUser){
+    String deleteUser = ("DELETE FROM users WHERE username = ?");
+    jdbcTemplate.update(deleteUser, currentUser.getName());}
+
 
     private User mapRowToUser(SqlRowSet rs) {
         User user = new User();

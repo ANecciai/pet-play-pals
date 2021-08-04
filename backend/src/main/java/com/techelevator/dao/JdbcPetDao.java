@@ -4,10 +4,13 @@ import com.techelevator.model.Pet;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class JdbcPetDao implements PetDao {
 
     private JdbcTemplate jdbcTemplate;
@@ -70,12 +73,12 @@ public class JdbcPetDao implements PetDao {
     }
 
     @Override
-    public void updatePet(Pet pet, int petId) {
+    public void updatePet(Pet pet, int petId, Principal currentUser) {
         String sql = "UPDATE pet SET username = ?, pet_name = ?, " +
                 "species = ?,  breed = ?, activity_level = ?," +
                 " gender = ?, age = ?, description = ? " +
-                "WHERE pet_id = ?";
-        jdbcTemplate.update(sql, pet.getUsername(), pet.getName(), pet.getSpecies(), pet.getBreed(), pet.getLevelOfActivity(), pet.getGender(), pet.getAge(), pet.getDescription(), petId);
+                "WHERE pet_id = ? AND username = ?";
+        jdbcTemplate.update(sql, currentUser.getName(), pet.getName(), pet.getSpecies(), pet.getBreed(), pet.getLevelOfActivity(), pet.getGender(), pet.getAge(), pet.getDescription(), petId, currentUser.getName());
     }
 
     @Override
