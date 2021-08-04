@@ -13,6 +13,10 @@ import java.util.List;
 public class JdbcProfileDao implements ProfileDao {
     private JdbcTemplate jdbcTemplate;
 
+    public JdbcProfileDao(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
 
     @Override
     public Profile getProfileById(int profileId) {
