@@ -17,8 +17,8 @@ CREATE TABLE users (
 	password_hash varchar(200) NOT NULL,
 	role varchar(50) NOT NULL,
 	zip_code int,
-	first_name varchar(50) NOT NULL,
-	last_name varchar(50) NOT NULL,
+	first_name varchar(50),
+	last_name varchar(50),
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 );
 INSERT INTO users (username,password_hash,first_name, last_name, role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','test', 'user', 'ROLE_USER');
