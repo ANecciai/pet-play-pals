@@ -12,6 +12,8 @@ public class User {
 
    private Long id;
    private String username;
+   private String firstName;
+   private String lastName;
    @JsonIgnore
    private String password;
    @JsonIgnore
@@ -41,6 +43,22 @@ public class User {
 
    public void setUsername(String username) {
       this.username = username;
+   }
+
+   public String getFirstName() {
+      return firstName;
+   }
+
+   public void setFirstName(String firstName) {
+      this.firstName = firstName;
+   }
+
+   public String getLastName() {
+      return lastName;
+   }
+
+   public void setLastName(String lastName) {
+      this.lastName = lastName;
    }
 
    public String getPassword() {
