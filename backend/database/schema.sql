@@ -70,4 +70,3 @@ INSERT INTO playdate_status (status_type) VALUES ('Accepted');
 INSERT INTO playdate_status (status_type) VALUES ('Pending');
 INSERT INTO playdate_status (status_type) VALUES ('Declined');
 COMMIT TRANSACTION;
-
