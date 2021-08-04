@@ -14,6 +14,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.techelevator.model.User;
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 @Component
 @Service
 public class JdbcUserDao implements UserDao {
@@ -109,9 +111,9 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
-    public void updateUser(Principal currentUser, User user){
+    public void updateUser(String currentUser, User user){
         String sql = "UPDATE users SET username = ?, password_hash = ?, first_name = ?, last_name = ?, zip_code = ?, role = ? WHERE username = ?";
-        jdbcTemplate.update(sql, user.getUsername(), user.getPassword(), user.getFirstName(), user.getLastName(), user.getZipCode(), user.getAuthorities(), user, currentUser.getName());
+        jdbcTemplate.update(sql, user.getUsername(), user.getPassword(), user.getFirstName(), user.getLastName(), user.getZipCode(), user.getAuthorities(), user, currentUser);
     }
 
 
