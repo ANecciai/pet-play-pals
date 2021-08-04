@@ -3,6 +3,7 @@ package com.techelevator.dao;
 import com.techelevator.model.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.security.web.authentication.preauth.j2ee.J2eeBasedPreAuthenticatedWebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 
 import java.security.Principal;
@@ -13,6 +14,9 @@ import java.util.List;
 public class JdbcProfileDao implements ProfileDao {
     private JdbcTemplate jdbcTemplate;
 
+    public JdbcProfileDao(JdbcTemplate jdbcTemplate){
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     @Override
     public Profile getProfileById(int profileId) {
@@ -83,15 +87,16 @@ public class JdbcProfileDao implements ProfileDao {
     }
 
     @Override
-    public void createProfile(String username, String firstName, String lastName, int zipcode) {
-        String insertProfile = "INSERT INTO profile (username, first_name, last_name, zipcode) values (?,?,?,?)";
+    public void createProfile(Profile profile) {
+        String insertProfile = "INSERT INTO profile (username, first_name, last_name, zipcode) VALUES (?,?,?,?)";
+        jdbcTemplate.update(insertProfile, profile.getUsername(), profile.getFirstName(), profile.getLastName(), profile.getZipcode());
     }
 
     @Override
-    public void updateProfile(Profile profile, int profileId, Principal currentUser) {
+    public void updateProfile(Profile profile, String currentUser) {
         String sql = "UPDATE profile SET username = ?, first_name = ?," +
-                "last_name = ?, zipcode = ? WHERE profile_id = ?";
-        jdbcTemplate.update(sql, currentUser.getName(), profile.getUsername(), profile.getFirstName(), profile.getLastName(), profile.getZipcode(), profileId);
+                "last_name = ?, zipcode = ? WHERE username = ?";
+        jdbcTemplate.update(sql, currentUser, profile.getFirstName(), profile.getLastName(), profile.getZipcode(), currentUser);
     }
 
     @Override
