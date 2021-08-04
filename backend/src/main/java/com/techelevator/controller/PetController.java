@@ -4,14 +4,12 @@ import com.techelevator.dao.PetDao;
 import com.techelevator.model.Pet;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 public class PetController {
     private final PetDao petDao;
