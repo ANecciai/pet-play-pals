@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS playdate_pets;
 DROP TABLE IF EXISTS playdate;
 DROP TABLE IF EXISTS playdate_status;
 DROP TABLE IF EXISTS pet;
+DROP TABLE IF EXISTS profile;
 DROP TABLE IF EXISTS users;
 DROP SEQUENCE IF EXISTS seq_user_id;
 CREATE SEQUENCE seq_user_id
@@ -21,6 +22,15 @@ CREATE TABLE users (
 );
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
+
+CREATE TABLE profile (
+        profile_id serial PRIMARY KEY,
+        username varchar (50),
+        first_name varchar (50) NOT NULL,
+        last_name varchar (50) NOT NULL,
+        zipcode int NOT NULL,
+        FOREIGN KEY (username) REFERENCES users(username));
+
 CREATE TABLE pet (
     pet_id serial PRIMARY KEY,
     username varchar(50),
