@@ -35,25 +35,31 @@ public class UserController {
         return userDao.getUserById(userId);
     }
 
-    @RequestMapping(value = "users/zip/{zip}", method = RequestMethod.GET)
+    @RequestMapping(value = "/users/zip/{zip}", method = RequestMethod.GET)
     public List<User> getUsersByZip(@PathVariable int zip){
         return userDao.findByZip(zip);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @RequestMapping(value = "users", method = RequestMethod.DELETE)
-    public void deleteUserAsAdmin(Long userId){
+    @RequestMapping(value = "/users", method = RequestMethod.DELETE)
+    public void deleteUserAsAdmin(@RequestBody Long userId){
         userDao.deleteUserAsAdmin(userId);
     }
 
+    @PreAuthorize("isAuthenticated()")
+    @RequestMapping(value = "/users/delete", method = RequestMethod.DELETE)
+    public void deleteOwnAccount(@RequestBody Principal principal){
+        userDao.deleteUser(principal);
+    }
+
     @PreAuthorize("hasRole('ADMIN')")
-    @RequestMapping(value = "users/{userId}/update", method = RequestMethod.PUT)
-    public void updateUserAsAdmin(User user, @PathVariable Long userId){
+    @RequestMapping(value = "/users/{userId}/update", method = RequestMethod.PUT)
+    public void updateUserAsAdmin(@RequestBody User user, @PathVariable Long userId){
         userDao.updateUserAsAdmin(user, userId);
     }
 
-    @RequestMapping(value = "users/update", method = RequestMethod.PUT)
-    public void updateUser(Principal principal, User user){
+    @RequestMapping(value = "/users/update", method = RequestMethod.PUT)
+    public void updateUser(@RequestBody Principal principal, User user){
         String currentUser = principal.getName();
             userDao.updateUser(currentUser, user);
     }

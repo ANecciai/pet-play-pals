@@ -89,7 +89,7 @@ public class JdbcProfileDao implements ProfileDao {
     @Override
     public void createProfile(Profile profile) {
         String insertProfile = "INSERT INTO profile (username, first_name, last_name, zipcode) VALUES (?,?,?,?)";
-        jdbcTemplate.update(insertProfile, profile.getUsername(), profile.getFirstName(), profile.getLastName(), profile.getZipcode());
+       jdbcTemplate.update(insertProfile, profile.getUsername(), profile.getFirstName(), profile.getLastName(), profile.getZipcode());
     }
 
     @Override

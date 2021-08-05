@@ -26,14 +26,13 @@ INSERT INTO users (username, password_hash, role) VALUES ('test_account','$2a$08
 
 CREATE TABLE profile (
         profile_id serial PRIMARY KEY,
-        username varchar (50),
+        username varchar (50) NOT NULL,
         first_name varchar (50) NOT NULL,
         last_name varchar (50) NOT NULL,
         zipcode int NOT NULL,
         FOREIGN KEY (username) REFERENCES users(username));
+        
 
-
-INSERT INTO profile (username, first_name, last_name, zipcode) VALUES ('test_account', 'test', 'account', 15317);
 
 CREATE TABLE pet (
     pet_id serial PRIMARY KEY,
