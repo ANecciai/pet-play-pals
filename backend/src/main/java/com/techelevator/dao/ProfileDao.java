@@ -19,9 +19,9 @@ public interface ProfileDao {
 
     Profile getProfileByZipcode(int zipcode);
 
-    void createProfile(String username, String firstName, String lastName, int zipcode);
+    void createProfile(Profile profile);
 
-    void updateProfile(Profile profile, int profileId, Principal currentUser);
+    void updateProfile(Profile profile, String currentUser);
 
     void deleteProfile(int profileId);
 }
