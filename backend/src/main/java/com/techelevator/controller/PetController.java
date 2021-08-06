@@ -40,8 +40,9 @@ public class PetController {
     }
 
     @RequestMapping(value = "/pets", method = RequestMethod.POST)
-    public void createPet(@RequestBody String name, String username, String species, String gender){
-        petDao.createPet(name, username, species, gender);
+    public void createPet(@RequestBody Pet pet, Principal principal){
+        pet.setUsername(principal.getName());
+        petDao.createPet(pet);
     }
 
     @RequestMapping(value = "/pets", method = RequestMethod.PUT)
