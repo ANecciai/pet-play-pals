@@ -100,9 +100,9 @@ public class JdbcProfileDao implements ProfileDao {
     }
 
     @Override
-    public void deleteProfile(int profileId) {
-        String deleteProfile = "DELETE FROM profile WHERE profile_id = ?";
-        jdbcTemplate.update(deleteProfile, profileId);
+    public void deleteProfile(String currentUser) {
+        String deleteProfile = "DELETE FROM profile WHERE username = ?";
+        jdbcTemplate.update(deleteProfile, currentUser);
     }
 
     private Profile mapRowToProfile(SqlRowSet rs) {

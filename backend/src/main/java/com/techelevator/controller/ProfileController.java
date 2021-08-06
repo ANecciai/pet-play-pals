@@ -43,8 +43,9 @@ public class ProfileController {
     }
 
     @RequestMapping(value = "/profile/delete", method = RequestMethod.DELETE)
-    public void deleteProfile(@RequestBody int profileId){
-        profileDao.deleteProfile(profileId);
+    public void deleteProfile(@RequestBody Principal principal){
+        String currentUser = principal.getName();
+        profileDao.deleteProfile(currentUser);
     }
 
     @RequestMapping(value = "/profile/update", method = RequestMethod.PUT)

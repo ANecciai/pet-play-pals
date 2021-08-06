@@ -25,24 +25,19 @@ public class UserController {
         return userDao.findAll();
     }
 
-    @RequestMapping(value = "/users/{username}", method = RequestMethod.GET)
+    @RequestMapping(value = "/users/username/{username}", method = RequestMethod.GET)
     public User getUserByUsername(@PathVariable String username){
         return userDao.findByUsername(username);
     }
 
     @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
-    public User getUserById(@PathVariable Long userId){
-        return userDao.getUserById(userId);
-    }
-
-    @RequestMapping(value = "/users/zip/{zip}", method = RequestMethod.GET)
-    public List<User> getUsersByZip(@PathVariable int zip){
-        return userDao.findByZip(zip);
+    public User getUserById(@PathVariable Long id){
+        return userDao.getUserById(id);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @RequestMapping(value = "/users", method = RequestMethod.DELETE)
-    public void deleteUserAsAdmin(@RequestBody Long userId){
+    @RequestMapping(value = "/users/admindelete", method = RequestMethod.DELETE)
+    public void deleteUserAsAdmin(@RequestParam Long userId){
         userDao.deleteUserAsAdmin(userId);
     }
 
