@@ -67,19 +67,6 @@ public class JdbcUserDao implements UserDao {
     }
 
 
-    @Override
-    public List<User> findByZip(int zip){
-        List<User> users = new ArrayList<>();
-        String sql = "SELECT * FROM users WHERE zip_code = ?";
-        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, zip);
-        while(rowSet.next()){
-            User user = mapRowToUser(rowSet);
-            users.add(user);
-        }
-        return users;
-    }
-
-
     public boolean create(String username, String password, String role) {
         boolean userCreated = false;
 

@@ -15,7 +15,6 @@ public interface UserDao {
 
     int findIdByUsername(String username);
 
-    List<User> findByZip(int zip);
 
     boolean create(String username, String password, String role);
 
