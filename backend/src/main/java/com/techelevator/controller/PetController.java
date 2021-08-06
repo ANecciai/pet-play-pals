@@ -30,23 +30,23 @@ public class PetController {
     }
 
     @RequestMapping(value = "/pets/{id}", method = RequestMethod.GET)
-    public Pet getPetByID(int petId){
+    public Pet getPetByID(@PathVariable int petId){
         return petDao.getPetById(petId);
     }
 
     @RequestMapping(value = "/pets/{username}", method = RequestMethod.GET)
-    public Pet getPetByUsername(String username){
+    public Pet getPetByUsername(@PathVariable String username){
         return petDao.getPetByUsername(username);
     }
 
     @RequestMapping(value = "/pets", method = RequestMethod.POST)
-    public void createPet(String name, String username, String species, String gender){
+    public void createPet(@RequestBody String name, String username, String species, String gender){
         petDao.createPet(name, username, species, gender);
     }
 
     @RequestMapping(value = "/pets", method = RequestMethod.PUT)
-    public void updatePet(Pet pet, int petId, Principal currentUser){
-
+    public void updatePet(@RequestBody Pet pet, int petId, Principal currentUser){
+        petDao.updatePet(pet, petId, currentUser);
     }
 
 
