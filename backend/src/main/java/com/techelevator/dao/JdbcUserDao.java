@@ -93,14 +93,14 @@ public class JdbcUserDao implements UserDao {
     @Override
     public void updateUserAsAdmin(User user, Long userId) {
         String sql = "UPDATE users SET username = ?, password_hash = ?, " +
-                "role = ?, zip_code = ?";
-        jdbcTemplate.update(sql, user.getUsername(), user.getPassword(), user.getAuthorities(), user.getZipCode(), userId);
+                "role = ?";
+        jdbcTemplate.update(sql, user.getUsername(), user.getPassword(), user.getAuthorities(), userId);
     }
 
     @Override
     public void updateUser(String currentUser, User user){
-        String sql = "UPDATE users SET username = ?, password_hash = ?, first_name = ?, last_name = ?, zip_code = ?, role = ? WHERE username = ?";
-        jdbcTemplate.update(sql, user.getUsername(), user.getPassword(), user.getFirstName(), user.getLastName(), user.getZipCode(), user.getAuthorities(), user, currentUser);
+        String sql = "UPDATE users SET username = ?, password_hash = ?, first_name = ?, last_name = ?, role = ? WHERE username = ?";
+        jdbcTemplate.update(sql, user.getUsername(), user.getPassword(), user.getFirstName(), user.getLastName(), user.getAuthorities(), user, currentUser);
     }
 
 
@@ -123,7 +123,6 @@ public class JdbcUserDao implements UserDao {
         user.setUsername(rs.getString("username"));
         user.setPassword(rs.getString("password_hash"));
         user.setAuthorities(rs.getString("role"));
-        user.setZipCode(rs.getInt("zip_code"));
         user.setActivated(true);
         return user;
     }

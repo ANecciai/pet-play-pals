@@ -1,10 +1,10 @@
 <template>
   <div class="home">
     <div>
-    <router-link :to="{ name: 'login' }" tag = button id="button">&nbsp;LOGIN&nbsp;   </router-link>
+    <router-link :to="{ name: 'login' }" tag = button id="button">LOGIN</router-link>
     </div>
     <div>
-    <router-link :to="{name: 'register'}" tag = button id="button">   &nbsp;REGISTER&nbsp;   </router-link>
+    <router-link :to="{name: 'register'}" tag = button id="button">REGISTER</router-link>
     </div>
   </div>
 </template>
@@ -12,18 +12,13 @@
 <script>
 
 
-import Login from "@/views/Login";
-import Register from "@/views/Register";
-import Login_register from '@/components/LoginRegister.vue';
+
 
 export default {
   name: "home",
 
   component: {
     
-    Login,
-    Register,
-    Login_register
   }
 };
 </script>

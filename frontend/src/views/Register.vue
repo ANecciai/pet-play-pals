@@ -42,6 +42,10 @@
         required
       />
       </div>
+          <label>First Name<input v-model="profile.firstName" type="text"/></label>
+          <label>Last Name<input type="text" v-model="profile.lastName"/></label>
+          <label>Zip Code<input type="text" v-model="profile.zipcode"/></label>
+          <label>About Me<input type="textarea" v-model="profile.aboutMe"/></label>
       <div>
       <router-link :to="{ name: 'login' }">Have an account?</router-link>
       </div>
@@ -61,6 +65,12 @@ export default {
   name: 'register',
   data() {
     return {
+      profile:{
+            firstName: '',
+            lastName: '',
+            zipcode: '',
+            aboutMe: ''
+            },
       user: {
         username: '',
         password: '',
@@ -78,7 +88,7 @@ export default {
         this.registrationErrorMsg = 'Password & Confirm Password do not match.';
       } else {
         authService
-          .register(this.user)
+          .register({user:this.user, profile:this.profile})
           .then((response) => {
             if (response.status == 201) {
               this.$router.push({

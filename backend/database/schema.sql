@@ -29,6 +29,7 @@ CREATE TABLE profile (
         first_name varchar (50) NOT NULL,
         last_name varchar (50) NOT NULL,
         zipcode int NOT NULL,
+        about_me text,
         FOREIGN KEY (username) REFERENCES users(username));
         
 
@@ -47,7 +48,7 @@ CREATE TABLE pet (
     CONSTRAINT CHK_activity_level CHECK (activity_level IN ('High', 'Medium', 'Low'))
     );
 
-INSERT INTO pet (username, pet_name, species, breed, activity_level, gender, age, description) VALUES ('test_account', 'Spot', 'Dog', 'Dalmatian', 'High', 'Male', 'Young', 'This is spot');
+INSERT INTO pet (username, pet_name, species, breed, activity_level, gender, age, description) VALUES ('test_account', 'Spot', 'Dog', 'Dalmatian', 'High', 'Male', '2', 'This is spot');
 CREATE TABLE playdate_status(
     status_id serial PRIMARY KEY,
     status_type varchar(50) UNIQUE
