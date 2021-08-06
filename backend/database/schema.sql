@@ -22,10 +22,8 @@ CREATE TABLE users (
 	last_name varchar(50),
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 );
-<<<<<<< HEAD
-INSERT INTO users (username,password_hash,first_name, last_name, role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','test', 'user', 'ROLE_USER');
-INSERT INTO users (username,password_hash, first_name, last_name, role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'test', 'administrator', 'ROLE_ADMIN');
-=======
+
+
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
 
@@ -37,7 +35,7 @@ CREATE TABLE profile (
         zipcode int NOT NULL,
         FOREIGN KEY (username) REFERENCES users(username));
 
->>>>>>> 98c51a3a18de8f57da10013990c59b0039900741
+
 CREATE TABLE pet (
     pet_id serial PRIMARY KEY,
     username varchar(50),
@@ -87,16 +85,4 @@ INSERT INTO playdate_status (status_type) VALUES ('Accepted');
 INSERT INTO playdate_status (status_type) VALUES ('Pending');
 INSERT INTO playdate_status (status_type) VALUES ('Declined');
 COMMIT TRANSACTION;
-<<<<<<< HEAD
 
-
-
-
-
-
-
-
-
-
-=======
->>>>>>> da96acd52258c3ab2dddc243aaed02a158d1e3b7
