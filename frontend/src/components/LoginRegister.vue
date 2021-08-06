@@ -1,19 +1,20 @@
 <template>
 <div>
-    Login
+  <login/>
+  <register/>
 </div>
   
 </template>
 
 <script>
-import login from '@/views/Login';
-import register from '@/views/Register';
+import Login from '@/views/Login';
+import Register from '@/views/Register';
 
 export default {
     name: "login-register",
     components:{
-        login,
-        register
+        Login,
+        Register
     }
 
 }

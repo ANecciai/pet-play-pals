@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <h1> Pet Play Pals</h1>
+      <h1> PET PLAY PALS</h1>
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
     </div>
@@ -10,5 +10,10 @@
 </template>
 <style>
 
+
+#app{
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
 
 </style>
