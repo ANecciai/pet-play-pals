@@ -38,17 +38,18 @@ public class ProfileController {
     }
 
     @RequestMapping(value="/profile/create", method = RequestMethod.POST)
-    public void createProfile(Profile profile){
+    public void createProfile(@RequestBody Profile profile){
         profileDao.createProfile(profile);
     }
 
     @RequestMapping(value = "/profile/delete", method = RequestMethod.DELETE)
-    public void deleteProfile(int profileId){
-        profileDao.deleteProfile(profileId);
+    public void deleteProfile(@RequestBody Principal principal){
+        String currentUser = principal.getName();
+        profileDao.deleteProfile(currentUser);
     }
 
     @RequestMapping(value = "/profile/update", method = RequestMethod.PUT)
-    public void updateProfile(Profile profile, Principal principal){
+    public void updateProfile(@RequestBody Profile profile, Principal principal){
         String currentUser = principal.getName();
         profileDao.updateProfile(profile, currentUser);
 

@@ -17,7 +17,6 @@ CREATE TABLE users (
 	username varchar(50) NOT NULL UNIQUE,
 	password_hash varchar(200) NOT NULL,
 	role varchar(50) NOT NULL,
-	zip_code int,
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 );
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
@@ -26,14 +25,13 @@ INSERT INTO users (username, password_hash, role) VALUES ('test_account','$2a$08
 
 CREATE TABLE profile (
         profile_id serial PRIMARY KEY,
-        username varchar (50),
+        username varchar (50) NOT NULL,
         first_name varchar (50) NOT NULL,
         last_name varchar (50) NOT NULL,
         zipcode int NOT NULL,
         FOREIGN KEY (username) REFERENCES users(username));
+        
 
-
-INSERT INTO profile (username, first_name, last_name, zipcode) VALUES ('test_account', 'test', 'account', 15317);
 
 CREATE TABLE pet (
     pet_id serial PRIMARY KEY,
@@ -48,6 +46,8 @@ CREATE TABLE pet (
     CONSTRAINT FK_pet FOREIGN KEY (username) REFERENCES users(username),
     CONSTRAINT CHK_activity_level CHECK (activity_level IN ('High', 'Medium', 'Low'))
     );
+
+INSERT INTO pet (username, pet_name, species, breed, activity_level, gender, age, description) VALUES ('test_account', 'Spot', 'Dog', 'Dalmatian', 'High', 'Male', 'Young', 'This is spot');
 CREATE TABLE playdate_status(
     status_id serial PRIMARY KEY,
     status_type varchar(50) UNIQUE

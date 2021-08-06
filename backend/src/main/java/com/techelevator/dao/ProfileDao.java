@@ -23,5 +23,5 @@ public interface ProfileDao {
 
     void updateProfile(Profile profile, String currentUser);
 
-    void deleteProfile(int profileId);
+    void deleteProfile(String currentUser);
 }

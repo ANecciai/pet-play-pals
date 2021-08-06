@@ -89,7 +89,7 @@ public class JdbcProfileDao implements ProfileDao {
     @Override
     public void createProfile(Profile profile) {
         String insertProfile = "INSERT INTO profile (username, first_name, last_name, zipcode) VALUES (?,?,?,?)";
-        jdbcTemplate.update(insertProfile, profile.getUsername(), profile.getFirstName(), profile.getLastName(), profile.getZipcode());
+       jdbcTemplate.update(insertProfile, profile.getUsername(), profile.getFirstName(), profile.getLastName(), profile.getZipcode());
     }
 
     @Override
@@ -100,9 +100,9 @@ public class JdbcProfileDao implements ProfileDao {
     }
 
     @Override
-    public void deleteProfile(int profileId) {
-        String deleteProfile = "DELETE FROM profile WHERE profile_id = ?";
-        jdbcTemplate.update(deleteProfile, profileId);
+    public void deleteProfile(String currentUser) {
+        String deleteProfile = "DELETE FROM profile WHERE username = ?";
+        jdbcTemplate.update(deleteProfile, currentUser);
     }
 
     private Profile mapRowToProfile(SqlRowSet rs) {
