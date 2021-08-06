@@ -15,7 +15,7 @@ public interface PetDao {
 
     List<Pet> listAllPetsBySpecies(String species);
 
-    void createPet(String name, String username, String species, String gender);
+    void createPet(Pet pet);
 
     void updatePet(Pet pet, int petId, Principal currentUser);
 

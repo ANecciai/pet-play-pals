@@ -6,12 +6,10 @@ export default {
     return axios.post('/login', user)
   },
 
-  register(user) {
-    return axios.post('/register', user)
+  register(userAndProfile) {
+    return axios.post('/register', userAndProfile)
   },
 
-  profile(user){
-    return axios.get(`/profiles/`, user)
-  },
+ 
 
 }

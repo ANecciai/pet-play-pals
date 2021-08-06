@@ -68,8 +68,9 @@ public class JdbcPetDao implements PetDao {
     }
 
     @Override
-    public void createPet(String name, String username, String species, String gender) {
-        String insertPet = "INSERT INTO pet (name, username, species, gender) values (?,?,?,?)";
+    public void createPet(Pet pet) {
+        String insertPet = "INSERT INTO pet (pet_name, username, species, breed, activity_level, gender, age, description) values (?,?,?,?,?,?,?,?)";
+        jdbcTemplate.update(insertPet, pet.getName(), pet.getUsername(), pet.getSpecies(), pet.getBreed(), pet.getLevelOfActivity(), pet.getGender(), pet.getAge(), pet.getDescription());
     }
 
     @Override

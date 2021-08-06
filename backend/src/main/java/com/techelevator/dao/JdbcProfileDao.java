@@ -88,15 +88,15 @@ public class JdbcProfileDao implements ProfileDao {
 
     @Override
     public void createProfile(Profile profile) {
-        String insertProfile = "INSERT INTO profile (username, first_name, last_name, zipcode) VALUES (?,?,?,?)";
-       jdbcTemplate.update(insertProfile, profile.getUsername(), profile.getFirstName(), profile.getLastName(), profile.getZipcode());
+        String insertProfile = "INSERT INTO profile (username, first_name, last_name, zipcode ,about_me) VALUES (?,?,?,?,?)";
+       jdbcTemplate.update(insertProfile, profile.getUsername(), profile.getFirstName(), profile.getLastName(), profile.getZipcode(), profile.getAboutMe());
     }
 
     @Override
     public void updateProfile(Profile profile, String currentUser) {
         String sql = "UPDATE profile SET username = ?, first_name = ?," +
-                " last_name = ?, zipcode = ? WHERE username = ?";
-        jdbcTemplate.update(sql, currentUser, profile.getFirstName(), profile.getLastName(), profile.getZipcode(), currentUser);
+                " last_name = ?, zipcode = ?, about_me = ? WHERE username = ?";
+        jdbcTemplate.update(sql, currentUser, profile.getFirstName(), profile.getLastName(), profile.getZipcode(), profile.getAboutMe(), currentUser);
     }
 
     @Override
@@ -112,6 +112,7 @@ public class JdbcProfileDao implements ProfileDao {
         profile.setFirstName(rs.getString("first_name"));
         profile.setLastName(rs.getString("last_name"));
         profile.setZipcode(rs.getInt("zipcode"));
+        profile.setAboutMe(rs.getString("about_me"));
         return profile;
     }
 }

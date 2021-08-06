@@ -7,6 +7,15 @@ public class Profile {
     private String firstName;
     private String lastName;
     private int zipcode;
+    private String aboutMe;
+
+    public String getAboutMe() {
+        return aboutMe;
+    }
+
+    public void setAboutMe(String aboutMe) {
+        this.aboutMe = aboutMe;
+    }
 
     public int getProfileId() {
         return profileId;

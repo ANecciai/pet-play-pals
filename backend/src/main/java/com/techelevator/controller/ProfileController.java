@@ -43,7 +43,7 @@ public class ProfileController {
     }
 
     @RequestMapping(value = "/profile/delete", method = RequestMethod.DELETE)
-    public void deleteProfile(@RequestBody Principal principal){
+    public void deleteProfile(Principal principal){
         String currentUser = principal.getName();
         profileDao.deleteProfile(currentUser);
     }
