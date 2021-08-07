@@ -25,7 +25,7 @@ public class PetController {
     }
 
     //works but case sensitive - do we want a search bar or a drop down to delete pet type?
-    @RequestMapping(value = "/species", method = RequestMethod.GET)
+    @RequestMapping(value = "/pets/species", method = RequestMethod.GET)
     public List<Pet> getPetsBySpecies(@RequestParam String species){
         return petDao.listAllPetsBySpecies(species);
     }

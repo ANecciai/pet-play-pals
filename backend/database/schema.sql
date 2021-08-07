@@ -57,6 +57,7 @@ CREATE TABLE playdate (
     playdate_id serial PRIMARY KEY,
     address varchar(50) NOT NULL,
     city varchar(50) NOT NULL,
+    state varchar(25) NOT NULL,
     zip_code int NOT NULL,
     playdate_time time NOT NULL,
     playdate_date date NOT NULL,

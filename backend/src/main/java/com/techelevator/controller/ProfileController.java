@@ -37,18 +37,18 @@ public class ProfileController {
         return profileDao.getProfileByZipcode(zipcode);
     }
 
-    @RequestMapping(value="/profile/create", method = RequestMethod.POST)
+    @RequestMapping(value="/profiles/create", method = RequestMethod.POST)
     public void createProfile(@RequestBody Profile profile){
         profileDao.createProfile(profile);
     }
 
-    @RequestMapping(value = "/profile/delete", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/profiles/delete", method = RequestMethod.DELETE)
     public void deleteProfile(Principal principal){
         String currentUser = principal.getName();
         profileDao.deleteProfile(currentUser);
     }
 
-    @RequestMapping(value = "/profile/update", method = RequestMethod.PUT)
+    @RequestMapping(value = "/profiles/update", method = RequestMethod.PUT)
     public void updateProfile(Principal principal, @RequestBody Profile profile){
         String currentUser = principal.getName();
         profileDao.updateProfile(profile, currentUser);

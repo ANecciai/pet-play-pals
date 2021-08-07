@@ -46,8 +46,17 @@ public class PlayDateController{
     @RequestMapping(value = "/playdates/create", method = RequestMethod.POST)
     public void createPlayDate(Principal principal, @RequestBody PlayDate playDate){
         String currentUser = principal.getName();
-        playDate.setHost_id(userDao.findIdByUsername(currentUser));
+        playDate.setHostId(userDao.findIdByUsername(currentUser));
         playDao.createPlayDate(playDate);
+    }
+
+    @RequestMapping(value = "/playdates/update", method = RequestMethod.PUT)
+    public void updatePlayDate(Principal principal, @RequestBody PlayDate playDate, @RequestBody int playDateId){
+        String currentUser = principal.getName();
+        int currentUserId = userDao.findIdByUsername(currentUser);
+        if (currentUserId == playDate.getHostId()){
+            playDao.updatePlayDate(playDate, playDateId);
+        }
     }
 
 
