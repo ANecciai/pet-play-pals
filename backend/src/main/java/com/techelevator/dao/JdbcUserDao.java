@@ -58,11 +58,11 @@ public class JdbcUserDao implements UserDao {
 
     @Override
     public User findByUsername(String username) throws UsernameNotFoundException {
-        for (User user : this.findAll()) {
-            if( user.getUsername().toLowerCase().equals(username.toLowerCase())) {
-                return user;
+        String sql = "SELECT * FROM users WHERE username = ?";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, username);
+        if (results.next()){
+            return mapRowToUser(results);
             }
-        }
         throw new UsernameNotFoundException("User " + username + " was not found.");
     }
 
@@ -91,6 +91,21 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
+    public void updateUser(String currentUser, User user){
+        String sql = "UPDATE users SET username = ?, password_hash = ?, first_name = ?, last_name = ?, role = ? WHERE username = ?";
+        jdbcTemplate.update(sql, user.getUsername(), user.getPassword(), user.getFirstName(), user.getLastName(), user.getAuthorities(), user, currentUser);
+    }
+
+    @Override
+    public void deleteUser(String currentUser){
+    String deleteUser = ("DELETE FROM users WHERE username = ?");
+    jdbcTemplate.update(deleteUser, currentUser);}
+
+
+
+    // ***** ADMIN COMMANDS *****
+
+    @Override
     public void updateUserAsAdmin(User user, Long userId) {
         String sql = "UPDATE users SET username = ?, password_hash = ?, " +
                 "role = ?";
@@ -98,23 +113,10 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
-    public void updateUser(String currentUser, User user){
-        String sql = "UPDATE users SET username = ?, password_hash = ?, first_name = ?, last_name = ?, role = ? WHERE username = ?";
-        jdbcTemplate.update(sql, user.getUsername(), user.getPassword(), user.getFirstName(), user.getLastName(), user.getAuthorities(), user, currentUser);
-    }
-
-
-    @Override
     public void deleteUserAsAdmin(Long userId) {
         String deleteUser = ("DELETE FROM users WHERE user_id = ?");
         jdbcTemplate.update(deleteUser, userId);
-
     }
-
-    @Override
-    public void deleteUser(Principal currentUser){
-    String deleteUser = ("DELETE FROM users WHERE username = ?");
-    jdbcTemplate.update(deleteUser, currentUser.getName());}
 
 
     private User mapRowToUser(SqlRowSet rs) {

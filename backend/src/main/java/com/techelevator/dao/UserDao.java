@@ -22,7 +22,7 @@ public interface UserDao {
 
     void updateUser(String currentUser, User user);
 
-    void deleteUser(Principal currentUser);
+    void deleteUser(String currentUser);
 
     void deleteUserAsAdmin(Long userId);
 }
