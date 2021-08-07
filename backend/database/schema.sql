@@ -55,7 +55,6 @@ CREATE TABLE playdate_status(
 );
 CREATE TABLE playdate (
     playdate_id serial PRIMARY KEY,
-    username varchar(50),
     address varchar(50) NOT NULL,
     city varchar(50) NOT NULL,
     zip_code int NOT NULL,
@@ -63,15 +62,13 @@ CREATE TABLE playdate (
     playdate_date date NOT NULL,
     playdate_description text,
     status_type varchar (50),
-    FOREIGN KEY (username) REFERENCES users(username),
-    FOREIGN KEY (status_type) REFERENCES playdate_status(status_type)
+    host_id int NOT NULL,
+    invited_id int NOT NULL,
+    FOREIGN KEY (status_type) REFERENCES playdate_status(status_type),
+    FOREIGN KEY (host_id) REFERENCES users(user_id),
+    FOREIGN KEY (invited_id) REFERENCES users(user_id)
     );
-CREATE TABLE playdate_pets(
-    playdate_id int,
-    pet_id int,
-    FOREIGN KEY (playdate_id) REFERENCES playdate(playdate_id),
-    FOREIGN KEY (pet_id) REFERENCES pet(pet_id)
-    );
+
 CREATE TABLE forum(
     forum_id serial PRIMARY KEY,
     username varchar(50),

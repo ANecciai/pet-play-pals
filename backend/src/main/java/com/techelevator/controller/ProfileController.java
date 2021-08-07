@@ -49,7 +49,7 @@ public class ProfileController {
     }
 
     @RequestMapping(value = "/profile/update", method = RequestMethod.PUT)
-    public void updateProfile(@RequestBody Profile profile, Principal principal){
+    public void updateProfile(Principal principal, @RequestBody Profile profile){
         String currentUser = principal.getName();
         profileDao.updateProfile(profile, currentUser);
 

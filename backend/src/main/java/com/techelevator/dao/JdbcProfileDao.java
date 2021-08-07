@@ -92,6 +92,7 @@ public class JdbcProfileDao implements ProfileDao {
        jdbcTemplate.update(insertProfile, profile.getUsername(), profile.getFirstName(), profile.getLastName(), profile.getZipcode(), profile.getAboutMe());
     }
 
+
     @Override
     public void updateProfile(Profile profile, String currentUser) {
         String sql = "UPDATE profile SET username = ?, first_name = ?," +
