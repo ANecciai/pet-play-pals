@@ -8,5 +8,9 @@ createPet(pet){
   
   editPet(pet, petId){
     return axios.put(`/pets/` + petId, pet)
+  },
+
+  getPet(pet, petId){
+    return axios.get(`/pets/` + petId, pet)
   }
 }
