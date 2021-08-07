@@ -20,13 +20,7 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {},
-    /*profile: {
-      firstName: '',
-      lastName: '',
-      zipCode: '',
-      aboutMe: '',
-    },
-   */
+    
 
   },
   mutations: {

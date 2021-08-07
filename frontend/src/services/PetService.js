@@ -3,14 +3,20 @@ import axios from 'axios';
 export default {
 
 createPet(pet){
-    return axios.post(`/pets/`, pet)
+  
+    return axios.post(`/pets/`, this.getAuthConfig(), pet)
   },
   
   editPet(pet, petId){
-    return axios.put(`/pets/` + petId, pet)
+    return axios.put(`/pets/` + petId, this.getAuthConfig(), pet)
   },
 
-  getPet(pet, petId){
-    return axios.get(`/pets/` + petId, pet)
+  getPet(pet){
+    return axios.get(`/pets/`, this.getAuthConfig(), pet)
+  },
+
+  getAuthConfig(){
+    return {headers: {"Authorization": "JWT " + this.$store.state.token}};
+
   }
 }
