@@ -82,8 +82,18 @@ public class JdbcPetDao implements PetDao {
         jdbcTemplate.update(sql, currentUser.getName(), pet.getName(), pet.getSpecies(), pet.getBreed(), pet.getLevelOfActivity(), pet.getGender(), pet.getAge(), pet.getDescription(), petId, currentUser.getName());
     }
 
+
     @Override
-    public void deletePet(int petId) {
+    public void deletePet(String currentUser, int petId) {
+        String sql = "DELETE FROM pet WHERE username = ? AND pet_id = ?";
+        jdbcTemplate.update(sql, currentUser, petId);
+    }
+
+
+
+    // ***** ADMIN COMMANDS *****
+    @Override
+    public void deletePetAdmin(int petId) {
         String deletePet = "DELETE FROM pet WHERE pet_id = ?";
         jdbcTemplate.update(deletePet, petId);
     }

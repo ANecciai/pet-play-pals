@@ -82,4 +82,5 @@ CREATE TABLE forum(
 INSERT INTO playdate_status (status_type) VALUES ('Accepted');
 INSERT INTO playdate_status (status_type) VALUES ('Pending');
 INSERT INTO playdate_status (status_type) VALUES ('Declined');
+INSERT INTO playdate_status (status_type) VALUES ('Canceled');
 COMMIT TRANSACTION;

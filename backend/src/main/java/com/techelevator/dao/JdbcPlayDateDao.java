@@ -89,6 +89,35 @@ public class JdbcPlayDateDao implements PlayDateDao {
         jdbcTemplate.update(deletePlaydate, playDateId);
     }
 
+    @Override
+    public void acceptPlayDate(PlayDate playdate, int playDateId){
+        String statusUpdate = "Accept";
+        String accept = "UPDATE playdate SET address, city, state," +
+                             " zip_code, playdate_time, playdate_date, playdate_description, status_type, host_id, invited_id WHERE playdate_id = ?";
+        jdbcTemplate.update(accept, playdate.getAddress(), playdate.getCity(), playdate.getState(), playdate.getZipCode(),
+                playdate.getPlaydateTime(), playdate.getPlaydateDate(), playdate.getPlaydateDescription(), statusUpdate, playdate.getHostId(), playdate.getInvitedId());
+    }
+
+    @Override
+    public void declinePlayDate(PlayDate playdate, int playDateId){
+        String statusUpdate = "Decline";
+        String decline = "UPDATE playdate SET address, city, state," +
+                " zip_code, playdate_time, playdate_date, playdate_description, status_type, host_id, invited_id WHERE playdate_id = ?";
+        jdbcTemplate.update(decline, playdate.getAddress(), playdate.getCity(), playdate.getState(), playdate.getZipCode(),
+                playdate.getPlaydateTime(), playdate.getPlaydateDate(), playdate.getPlaydateDescription(), statusUpdate, playdate.getHostId(), playdate.getInvitedId());
+    }
+
+    @Override
+    public void cancelPlayDate(PlayDate playdate, int playDateId){
+        String statusUpdate = "Canceled";
+        String cancel = "UPDATE playdate SET address, city, state," +
+                " zip_code, playdate_time, playdate_date, playdate_description, status_type, host_id, invited_id WHERE playdate_id = ?";
+        jdbcTemplate.update(cancel, playdate.getAddress(), playdate.getCity(), playdate.getState(), playdate.getZipCode(),
+                playdate.getPlaydateTime(), playdate.getPlaydateDate(), playdate.getPlaydateDescription(), statusUpdate, playdate.getHostId(), playdate.getInvitedId());
+    }
+
+
+
     private PlayDate mapRowToPlayDate(SqlRowSet rs) {
         PlayDate playDate = new PlayDate();
         playDate.setPlayDateId(rs.getInt("playdate_id"));

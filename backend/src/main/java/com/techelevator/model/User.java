@@ -8,12 +8,8 @@ import java.util.Set;
 
 public class User {
 
-   private int zipCode;
-
    private Long id;
    private String username;
-   private String firstName;
-   private String lastName;
    @JsonIgnore
    private String password;
    @JsonIgnore
@@ -45,22 +41,6 @@ public class User {
       this.username = username;
    }
 
-   public String getFirstName() {
-      return firstName;
-   }
-
-   public void setFirstName(String firstName) {
-      this.firstName = firstName;
-   }
-
-   public String getLastName() {
-      return lastName;
-   }
-
-   public void setLastName(String lastName) {
-      this.lastName = lastName;
-   }
-
    public String getPassword() {
       return password;
    }
@@ -83,13 +63,6 @@ public class User {
 
    public void setAuthorities(Set<Authority> authorities) {
       this.authorities = authorities;
-   }
-   public int getZipCode() {
-      return zipCode;
-   }
-
-   public void setZipCode(int zipCode) {
-      this.zipCode = zipCode;
    }
 
    public void setAuthorities(String authorities) {
