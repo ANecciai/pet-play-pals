@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form v-on:submit.prevent="createPlayDate">
+    <form v-on:submit.prevent="createPlaydate">
       <div>
         <label
           >Address</label>
@@ -22,6 +22,14 @@
       </div>
       <div>
         <label
+          >State</label>
+      </div>
+      <div>
+          <input v-model="playdate.state" placeholder="State" type="text"
+        />
+      </div>
+      <div>
+        <label
           >Zip Code</label></div>
           <div>
           <input
@@ -34,17 +42,24 @@
         <label>Date</label>
       </div>
       <div>
-      <input v-model="playdate.date" placeholder="date" type="date"/>
+      <input v-model="playdate.playdateDate" placeholder="date" type="date"/>
       </div>
       <div>
         <label>Time</label>
       </div>
       <div>
-          <input v-model="playdate.time" placeholder="time" type="time"
+          <input v-model="playdate.playdateTime" placeholder="time" type="time"
         />
       </div>
       <div>
-        <input id="button" type="submit" value="SUBMIT" />
+        <label>Description</label>
+      </div>
+      <div>
+          <input v-model="playdate.playdateDescription" placeholder="Description" type="textarea"
+        />
+      </div>
+      <div>
+        <input id="button" type="submit" value="SCHEDULE PLAYDATE" />
       </div>
     </form>
   </div>
@@ -61,9 +76,10 @@ export default {
       playdate: {
         address: "",
         city: "",
+        state: "",
         zipCode: "",
-        date: "",
-        time: "",
+        playdateDate: "",
+        playdateTime: "",
         status: "",
       },
     };
