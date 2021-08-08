@@ -68,17 +68,19 @@ public class JdbcPlayDateDao implements PlayDateDao {
     }
 
     @Override
-    public void createPlayDate(String username, String address, String city, int zipCode, String date, String time) {
-        String insertPlayDate = "INSERT INTO playdate (username, address, city," +
-                " zip_code, playdate_date, playdate_time) values (?,?,?,?,?,?)";
+    public void createPlayDate(PlayDate playdate) {
+        String insertPlayDate = "INSERT INTO playdate (address, city," +
+                " zip_code, playdate_date, playdate_time, host_id, invited_id) VALUES (?,?,?,?,?,?)";
+        jdbcTemplate.update(insertPlayDate, playdate.getAddress(), playdate.getCity(), playdate.getZipCode(),
+                playdate.getDate(), playdate.getTime(), playdate.getHost_id(), playdate.getInvited_id());
     }
 
     @Override
     public void updatePlayDate(PlayDate playDate, int playDateId) {
-        String updatePlaydate = "UPDATE playdate SET username = ?, address = ?," +
+        String updatePlaydate = "UPDATE playdate SET address = ?," +
                 " city = ?, zip_code = ?, playdate_time = ?, playdate_date =?, " +
                 " playdate_description = ?,  status_type = ? WHERE playdate_id = ?";
-        jdbcTemplate.update(updatePlaydate, playDate.getUsername(), playDate.getAddress(), playDate.getCity(), playDate.getZipCode(), playDate.getDate(), playDate.getTime(), playDateId);
+        jdbcTemplate.update(updatePlaydate, playDate.getAddress(), playDate.getCity(), playDate.getZipCode(), playDate.getDate(), playDate.getTime(), playDateId);
     }
 
     @Override
@@ -90,12 +92,13 @@ public class JdbcPlayDateDao implements PlayDateDao {
     private PlayDate mapRowToPlayDate(SqlRowSet rs) {
         PlayDate playDate = new PlayDate();
         playDate.setPlayDateId(rs.getInt("playdate_id"));
-        playDate.setUsername(rs.getString("username"));
         playDate.setAddress(rs.getString("address"));
         playDate.setCity(rs.getString("city"));
         playDate.setZipCode(rs.getInt("zip_code"));
         playDate.setDate(rs.getString("playdate_date"));
         playDate.setTime(rs.getString("playdate_time"));
+        playDate.setHost_id(rs.getInt("host_id"));
+        playDate.setInvited_id(rs.getInt("invited_id"));
         return playDate;
     }
 }

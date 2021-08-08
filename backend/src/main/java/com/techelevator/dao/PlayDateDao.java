@@ -14,7 +14,7 @@ public interface PlayDateDao {
 
     List<PlayDate> getAllPlayDatesByPetId(int petId);
 
-    void createPlayDate(String username, String address, String city, int zipCode, String date, String time);
+    void createPlayDate(PlayDate playDate);
 
     void updatePlayDate(PlayDate playDate,int playDateId);
 

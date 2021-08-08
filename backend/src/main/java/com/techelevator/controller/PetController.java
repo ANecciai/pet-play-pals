@@ -24,29 +24,34 @@ public class PetController {
         return petDao.listAllPets();
     }
 
+    //works but case sensitive - do we want a search bar or a drop down to delete pet type?
     @RequestMapping(value = "/species", method = RequestMethod.GET)
     public List<Pet> getPetsBySpecies(@RequestParam String species){
         return petDao.listAllPetsBySpecies(species);
     }
 
+    //working
     @RequestMapping(value = "/pets/{id}", method = RequestMethod.GET)
-    public Pet getPetByID(@PathVariable int petId){
-        return petDao.getPetById(petId);
+    public Pet getPetByID(@PathVariable int id){
+        return petDao.getPetById(id);
     }
 
-    @RequestMapping(value = "/pets/{username}", method = RequestMethod.GET)
-    public Pet getPetByUsername(@PathVariable String username){
+    //working
+    @RequestMapping(value = "/pets/username", method = RequestMethod.GET)
+    public Pet getPetByUsername(@RequestParam String username){
         return petDao.getPetByUsername(username);
     }
 
+    //working
     @RequestMapping(value = "/pets", method = RequestMethod.POST)
     public void createPet(@RequestBody Pet pet, Principal principal){
         pet.setUsername(principal.getName());
         petDao.createPet(pet);
     }
 
+
     @RequestMapping(value = "/pets", method = RequestMethod.PUT)
-    public void updatePet(@RequestBody Pet pet, int petId, Principal currentUser){
+    public void updatePet(Principal currentUser, @RequestBody Pet pet, int petId){
         petDao.updatePet(pet, petId, currentUser);
     }
 

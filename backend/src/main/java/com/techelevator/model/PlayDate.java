@@ -3,12 +3,13 @@ package com.techelevator.model;
 public class PlayDate {
 
     private int playDateId;
-    private String username;
     private String address;
     private String city;
     private int zipCode;
     private String date;
     private String time;
+    private int invited_id;
+    private int host_id;
 
 
 
@@ -19,14 +20,6 @@ public class PlayDate {
 
     public void setPlayDateId(int playDateId) {
         this.playDateId = playDateId;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getAddress() {
@@ -67,5 +60,21 @@ public class PlayDate {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public int getInvited_id() {
+        return invited_id;
+    }
+
+    public void setInvited_id(int invited_id) {
+        this.invited_id = invited_id;
+    }
+
+    public int getHost_id() {
+        return host_id;
+    }
+
+    public void setHost_id(int host_id) {
+        this.host_id = host_id;
     }
 }
