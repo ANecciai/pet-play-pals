@@ -11,7 +11,7 @@ public interface PetDao {
 
     List<Pet> listAllPets();
 
-    Pet getPetByUsername(String username);
+    List<Pet> getPetByUsername(String username);
 
     List<Pet> listAllPetsBySpecies(String species);
 

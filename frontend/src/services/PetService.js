@@ -12,7 +12,7 @@ createPet(pet){
   },
 
   getPet(pet){
-    return axios.get(`/pets/`, this.getAuthConfig(), pet)
+    return axios.get(`/pets/username` + username, this.getAuthConfig(), pet)
   },
 
   getAuthConfig(){

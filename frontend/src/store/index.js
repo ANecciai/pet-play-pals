@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import { use } from 'vue/types/umd'
 
 Vue.use(Vuex)
 
@@ -11,6 +12,10 @@ Vue.use(Vuex)
  */
 const currentToken = localStorage.getItem('token')
 const currentUser = JSON.parse(localStorage.getItem('user'));
+let currentPet = {}; 
+let userPets=[]; 
+currentPet = JSON.parse(localStorage.getItem('pet'));
+userPets = JSON.parse(localStorage.getItem('pets'))
 
 if(currentToken != null) {
   axios.defaults.headers.common['Authorization'] = `Bearer ${currentToken}`;
@@ -20,6 +25,9 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {},
+    pet: currentPet,
+    pets: userPets,
+    
     
 
   },
@@ -39,6 +47,13 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
+    },
+    SET_PET (state, pet){
+      state.pets = pets;
+      if (pets[0]){
+        state.pet = pets[0]
+      }
+      localStorage.setItem('pet', JSON.stringify(pet))
     }
   }
 })

@@ -34,8 +34,8 @@ public class PetController {
         return petDao.getPetById(petId);
     }
 
-    @RequestMapping(value = "/pets/{username}", method = RequestMethod.GET)
-    public Pet getPetByUsername(@PathVariable String username){
+    @RequestMapping(value = "/pets/username", method = RequestMethod.GET)
+    public List<Pet> getPetByUsername(@RequestParam String username){
         return petDao.getPetByUsername(username);
     }
 

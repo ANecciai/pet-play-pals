@@ -31,14 +31,14 @@ public class JdbcPetDao implements PetDao {
     }
 
     @Override
-    public Pet getPetByUsername(String username) {
+    public List<Pet> getPetByUsername(String username) {
         String sql = "SELECT * FROM pet WHERE username = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, username);
-        if(results.next()) {
-            return mapRowToPet(results);
-        } else {
-            throw new RuntimeException("username" + username + "was not found.");
+        List<Pet> allPets = new ArrayList<>();
+        while(results.next()) {
+            allPets.add(mapRowToPet(results));
         }
+        return allPets;
     }
 
     @Override
