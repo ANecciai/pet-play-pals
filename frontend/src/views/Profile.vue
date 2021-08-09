@@ -1,14 +1,8 @@
 <template>
 <div>
-<<<<<<< HEAD
-    <h2>WELCOME BACK, {{$store.state.user.username.toUpperCase()}}! </h2>
-    <h3>YOUR PETS</h3>
-    <p v-for="pet in $store.state.pets" v-bind:key="pet.id">{{pet.name}}</p>
-=======
     <h1> PROFILE </h1>
     <h2>WELCOME BACK {{$store.state.user.username}}!! </h2>
     <p v-for="pet in $store.state.pets" v-bind:key="pet.id">{{pet.name}}&nbsp;|&nbsp;{{pet.species}}</p>
->>>>>>> 9e98e35973dcac2369326573415ee5f5d6450516
     <router-link tag = button v-bind:to="{name: 'pet'}"> ADD PET</router-link>
     <router-link tag = button v-bind:to="{name: 'playdate'}">ADD PLAYDATE</router-link>
     </div>
