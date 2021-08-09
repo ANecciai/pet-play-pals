@@ -1,7 +1,7 @@
 <template>
   <div id="register" class="text-center">
     <form class="form-register" @submit.prevent="register">
-      <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
+      <h2 class="h3 mb-3 font-weight-normal">Create Account</h2>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
@@ -42,6 +42,9 @@
         required
       />
       </div>
+
+        <div>
+          <h2>Create Profile</h2>
           <div>
             <label>First Name</label>
           </div>
@@ -66,8 +69,10 @@
           <div>
           <input placeholder="About Me" type="textarea" v-model="profile.aboutMe"/>
           </div>
+      </div>
+
       <div>
-      <router-link :to="{ name: 'login' }">Have an account?</router-link>
+      <router-link :to="{ name: 'login' }">Already have an account?</router-link>
       </div>
       <div>
       <button class="btn btn-lg btn-primary btn-block" type="submit">
@@ -134,4 +139,6 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+
+</style>
