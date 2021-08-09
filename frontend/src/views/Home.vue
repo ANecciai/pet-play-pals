@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <p>Connect with pet owners nearby<br>and schedule playdates!</p>
     <div>
     <router-link :to="{ name: 'login' }" tag = button id="button">LOGIN</router-link>
     </div>
@@ -41,7 +42,7 @@ export default {
 .home{
   text-align: center;
   color: black;
-
 }
+
 
 </style>

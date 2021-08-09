@@ -59,7 +59,7 @@
       />
       </div>
       <div>
-      <input id="button" type="submit" value="SUBMIT" />
+      <input id="button" type="submit" value="SAVE PET" />
       </div>
     </form>
   </div>
