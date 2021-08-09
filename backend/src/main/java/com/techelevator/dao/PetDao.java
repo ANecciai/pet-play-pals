@@ -19,5 +19,7 @@ public interface PetDao {
 
     void updatePet(Pet pet, int petId, Principal currentUser);
 
-    void deletePet(int petId);
+    void  deletePet(String currentUser, int petId);
+
+    void deletePetAdmin(int petId);
 }

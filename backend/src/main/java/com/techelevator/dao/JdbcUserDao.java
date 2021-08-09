@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import com.techelevator.model.User;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+
 @Component
 @Service
 public class JdbcUserDao implements UserDao {
@@ -31,16 +32,16 @@ public class JdbcUserDao implements UserDao {
         return jdbcTemplate.queryForObject("select user_id from users where username = ?", int.class, username);
     }
 
-	@Override
-	public User getUserById(Long userId) {
-		String sql = "SELECT * FROM users WHERE user_id = ?";
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
-		if(results.next()) {
-			return mapRowToUser(results);
-		} else {
-			throw new RuntimeException("userId "+userId+" was not found.");
-		}
-	}
+    @Override
+    public User getUserById(Long userId) {
+        String sql = "SELECT * FROM users WHERE user_id = ?";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
+        if(results.next()) {
+            return mapRowToUser(results);
+        } else {
+            throw new RuntimeException("userId "+userId+" was not found.");
+        }
+    }
 
     @Override
     public List<User> findAll() {
@@ -58,11 +59,11 @@ public class JdbcUserDao implements UserDao {
 
     @Override
     public User findByUsername(String username) throws UsernameNotFoundException {
-        String sql = "SELECT * FROM users WHERE username = ?";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, username);
-        if (results.next()){
-            return mapRowToUser(results);
+        for (User user : this.findAll()) {
+            if( user.getUsername().toLowerCase().equals(username.toLowerCase())) {
+                return user;
             }
+        }
         throw new UsernameNotFoundException("User " + username + " was not found.");
     }
 
@@ -93,7 +94,7 @@ public class JdbcUserDao implements UserDao {
     @Override
     public void updateUser(String currentUser, User user){
         String sql = "UPDATE users SET username = ?, password_hash = ?, first_name = ?, last_name = ?, role = ? WHERE username = ?";
-        jdbcTemplate.update(sql, user.getUsername(), user.getPassword(), user.getFirstName(), user.getLastName(), user.getAuthorities(), user, currentUser);
+        jdbcTemplate.update(sql, user.getUsername(), user.getPassword(), user.getAuthorities(), user, currentUser);
     }
 
     @Override

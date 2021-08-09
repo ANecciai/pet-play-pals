@@ -66,6 +66,7 @@ CREATE TABLE playdate (
     playdate_id serial PRIMARY KEY,
     address varchar(50) NOT NULL,
     city varchar(50) NOT NULL,
+    state varchar(25) NOT NULL,
     zip_code int NOT NULL,
     playdate_time time NOT NULL,
     playdate_date date NOT NULL,
@@ -90,5 +91,6 @@ CREATE TABLE forum(
 INSERT INTO playdate_status (status_type) VALUES ('Accepted');
 INSERT INTO playdate_status (status_type) VALUES ('Pending');
 INSERT INTO playdate_status (status_type) VALUES ('Declined');
+INSERT INTO playdate_status (status_type) VALUES ('Canceled');
 COMMIT TRANSACTION;
 
