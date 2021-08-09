@@ -39,15 +39,14 @@ public class PetController {
         return petDao.getPetById(id);
     }
 
-    //working
     @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/pets/username", method = RequestMethod.GET)
-    public Pet getPetByUsername(@RequestParam String username){
-        return petDao.getPetByUsername(username);
+    public List<Pet> getPetByUsername(Principal principal){
+        return petDao.getPetByUsername(principal.getName());
     }
 
     //working
-    @PreAuthorize("isAuthenticated()")
+    //@PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/pets", method = RequestMethod.POST)
     public void createPet(@RequestBody Pet pet, Principal principal){
         pet.setUsername(principal.getName());

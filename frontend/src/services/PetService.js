@@ -4,15 +4,15 @@ export default {
 
 createPet(pet){
   
-    return axios.post(`/pets/`, this.getAuthConfig(), pet)
+    return axios.post(`/pets/`, pet)
   },
   
   editPet(pet, petId){
-    return axios.put(`/pets/` + petId, this.getAuthConfig(), pet)
+    return axios.put(`/pets/` + petId, pet)
   },
 
-  getPet(pet){
-    return axios.get(`/pets/`, this.getAuthConfig(), pet)
+  getPet(){
+    return axios.get(`/pets/username`)
   },
 
   getAuthConfig(){

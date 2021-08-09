@@ -42,10 +42,30 @@
         required
       />
       </div>
-          <label>First Name<input v-model="profile.firstName" type="text"/></label>
-          <label>Last Name<input type="text" v-model="profile.lastName"/></label>
-          <label>Zip Code<input type="text" v-model="profile.zipcode"/></label>
-          <label>About Me<input type="textarea" v-model="profile.aboutMe"/></label>
+          <div>
+            <label>First Name</label>
+          </div>
+          <div>
+            <input placeholder="First Name" v-model="profile.firstName" type="text"/>
+          </div>
+          <div>
+          <label>Last Name</label>
+          </div>
+          <div>
+          <input placeholder="Last Name"  type="text" v-model="profile.lastName"/>
+          </div>
+          <div>
+          <label>Zip Code</label>
+          </div>
+          <div>
+          <input placeholder="Zip Code" type="text" v-model="profile.zipcode"/>
+          </div>
+          <div>
+          <label>About Me</label>
+          </div>
+          <div>
+          <input placeholder="About Me" type="textarea" v-model="profile.aboutMe"/>
+          </div>
       <div>
       <router-link :to="{ name: 'login' }">Have an account?</router-link>
       </div>
