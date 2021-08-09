@@ -69,15 +69,23 @@ const router = new Router({
     name: "pet",
     component: Pet,
     meta:{
-      requiresAuth: true
+      requiresAuth: false
     }
     },
+    {
+    path: "/pets/:username",
+    name: "pets",
+    component: Pet,
+    meta:{
+      requiresAuth: false
+    }
+  },
     {
       path: "/playdate",
       name: "playdate",
       component: Playdate,
       meta:{
-        requiresAuth: true
+        requiresAuth: false
       }
     }
   ]

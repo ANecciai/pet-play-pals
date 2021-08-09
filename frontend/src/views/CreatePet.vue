@@ -62,10 +62,18 @@ export default {
   },
   methods: {
     createPet() {
-      petService.createPet(this.pet);
+      petService
+      .createPet(this.pet)
+      .then(response => {
+        if (response.status == 200){
+          this.$router.push(`/profile/${this.$store.state.user.username}`);
+        }
+      })
+      
+      
     },
-  },
-};
+},
+}
 </script>
 
 <style>
