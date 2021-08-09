@@ -66,7 +66,6 @@ export default {
       .createPet(this.pet)
       .then(response => {
         if (response.status == 200){
-          this.$store.commit("SET_PET", response.data.pet);
           this.$router.push(`/profile/${this.$store.state.user.username}`);
         }
       })

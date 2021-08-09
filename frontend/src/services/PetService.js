@@ -8,11 +8,11 @@ createPet(pet){
   },
   
   editPet(pet, petId){
-    return axios.put(`/pets/` + petId,  pet)
+    return axios.put(`/pets/` + petId, pet)
   },
 
-  getPet(pet){
-    return axios.get(`/pets/username`, pet)
+  getPet(){
+    return axios.get(`/pets/username`)
   },
 
   getAuthConfig(){

@@ -41,8 +41,8 @@ public class PetController {
 
     @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/pets/username", method = RequestMethod.GET)
-    public List<Pet> getPetByUsername(@RequestParam String username){
-        return petDao.getPetByUsername(username);
+    public List<Pet> getPetByUsername(Principal principal){
+        return petDao.getPetByUsername(principal.getName());
     }
 
     //working
