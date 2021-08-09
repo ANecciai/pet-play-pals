@@ -23,6 +23,7 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     pets: [],
+    activePet: '',
    
     
 
@@ -46,7 +47,9 @@ export default new Vuex.Store({
     },
     SET_PETS(state, pets){
       state.pets = pets;
+    },
+    SET_ACTIVE_PET(state, activePetId){
+      state.activePet = activePetId;
     }
-    
   }
 })

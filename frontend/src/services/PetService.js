@@ -18,5 +18,13 @@ createPet(pet){
   getAuthConfig(){
     return {headers: {"Authorization": "JWT " + this.$store.state.token}};
 
+  },
+
+  getAllPets(){
+    return axios.get(`/allpets`)
+  },
+
+  getPetById(id){
+    return axios.get(`/pets/${{id}}`)
   }
 }

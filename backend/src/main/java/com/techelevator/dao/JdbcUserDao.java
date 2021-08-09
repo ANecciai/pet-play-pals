@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 import com.techelevator.model.User;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-
+@CrossOrigin
 @Component
 @Service
 public class JdbcUserDao implements UserDao {
