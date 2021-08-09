@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import com.techelevator.model.User;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+
 @Component
 @Service
 public class JdbcUserDao implements UserDao {
@@ -31,16 +32,16 @@ public class JdbcUserDao implements UserDao {
         return jdbcTemplate.queryForObject("select user_id from users where username = ?", int.class, username);
     }
 
-	@Override
-	public User getUserById(Long userId) {
-		String sql = "SELECT * FROM users WHERE user_id = ?";
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
-		if(results.next()) {
-			return mapRowToUser(results);
-		} else {
-			throw new RuntimeException("userId "+userId+" was not found.");
-		}
-	}
+    @Override
+    public User getUserById(Long userId) {
+        String sql = "SELECT * FROM users WHERE user_id = ?";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
+        if(results.next()) {
+            return mapRowToUser(results);
+        } else {
+            throw new RuntimeException("userId "+userId+" was not found.");
+        }
+    }
 
     @Override
     public List<User> findAll() {
@@ -91,6 +92,21 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
+    public void updateUser(String currentUser, User user){
+        String sql = "UPDATE users SET username = ?, password_hash = ?, first_name = ?, last_name = ?, role = ? WHERE username = ?";
+        jdbcTemplate.update(sql, user.getUsername(), user.getPassword(), user.getAuthorities(), user, currentUser);
+    }
+
+    @Override
+    public void deleteUser(String currentUser){
+    String deleteUser = ("DELETE FROM users WHERE username = ?");
+    jdbcTemplate.update(deleteUser, currentUser);}
+
+
+
+    // ***** ADMIN COMMANDS *****
+
+    @Override
     public void updateUserAsAdmin(User user, Long userId) {
         String sql = "UPDATE users SET username = ?, password_hash = ?, " +
                 "role = ?";
@@ -98,23 +114,10 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
-    public void updateUser(String currentUser, User user){
-        String sql = "UPDATE users SET username = ?, password_hash = ?, first_name = ?, last_name = ?, role = ? WHERE username = ?";
-        jdbcTemplate.update(sql, user.getUsername(), user.getPassword(), user.getFirstName(), user.getLastName(), user.getAuthorities(), user, currentUser);
-    }
-
-
-    @Override
     public void deleteUserAsAdmin(Long userId) {
         String deleteUser = ("DELETE FROM users WHERE user_id = ?");
         jdbcTemplate.update(deleteUser, userId);
-
     }
-
-    @Override
-    public void deleteUser(Principal currentUser){
-    String deleteUser = ("DELETE FROM users WHERE username = ?");
-    jdbcTemplate.update(deleteUser, currentUser.getName());}
 
 
     private User mapRowToUser(SqlRowSet rs) {

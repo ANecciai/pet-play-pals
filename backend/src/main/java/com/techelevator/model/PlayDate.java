@@ -1,14 +1,22 @@
 package com.techelevator.model;
 
+import java.sql.Date;
+import java.sql.Time;
+import java.time.LocalDate;
+
 public class PlayDate {
 
     private int playDateId;
-    private String username;
     private String address;
     private String city;
+    private String state;
     private int zipCode;
-    private String date;
-    private String time;
+    private Date playdateDate;
+    private Time playdateTime;
+    private String playdateDescription;
+    private String statusType;
+    private int invitedId;
+    private int hostId;
 
 
 
@@ -19,14 +27,6 @@ public class PlayDate {
 
     public void setPlayDateId(int playDateId) {
         this.playDateId = playDateId;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getAddress() {
@@ -45,6 +45,14 @@ public class PlayDate {
         this.city = city;
     }
 
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
     public int getZipCode() {
         return zipCode;
     }
@@ -53,19 +61,51 @@ public class PlayDate {
         this.zipCode = zipCode;
     }
 
-    public String getDate() {
-        return date;
+    public Date getPlaydateDate() {
+        return playdateDate;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setPlaydateDate(Date playdateDate) {
+        this.playdateDate = playdateDate;
     }
 
-    public String getTime() {
-        return time;
+    public Time getPlaydateTime() {
+        return playdateTime;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setPlaydateTime(Time playdateTime) {
+        this.playdateTime = playdateTime;
+    }
+
+    public String getPlaydateDescription() {
+        return playdateDescription;
+    }
+
+    public void setPlaydateDescription(String playdateDescription) {
+        this.playdateDescription = playdateDescription;
+    }
+
+    public String getStatusType() {
+        return statusType;
+    }
+
+    public void setStatusType(String statusType) {
+        this.statusType = statusType;
+    }
+
+    public int getInvitedId() {
+        return invitedId;
+    }
+
+    public void setInvitedId(int invitedId) {
+        this.invitedId = invitedId;
+    }
+
+    public int getHostId() {
+        return hostId;
+    }
+
+    public void setHostId(int hostId) {
+        this.hostId = hostId;
     }
 }

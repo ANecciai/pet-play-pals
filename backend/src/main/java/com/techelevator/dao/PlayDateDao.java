@@ -14,10 +14,15 @@ public interface PlayDateDao {
 
     List<PlayDate> getAllPlayDatesByPetId(int petId);
 
-    void createPlayDate(String username, String address, String city, int zipCode, String date, String time);
+    void createPlayDate(PlayDate playDate);
 
     void updatePlayDate(PlayDate playDate,int playDateId);
 
     void deletePlayDate(PlayDate playDate, int playDateId);
 
+    void acceptPlayDate(PlayDate playDate, int playDateId);
+
+    void declinePlayDate(PlayDate playDate, int playDateId);
+
+    void cancelPlayDate(PlayDate playDate, int playDateId);
 }

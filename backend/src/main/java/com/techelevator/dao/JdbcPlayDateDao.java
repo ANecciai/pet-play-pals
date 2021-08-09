@@ -68,17 +68,19 @@ public class JdbcPlayDateDao implements PlayDateDao {
     }
 
     @Override
-    public void createPlayDate(String username, String address, String city, int zipCode, String date, String time) {
-        String insertPlayDate = "INSERT INTO playdate (username, address, city," +
-                " zip_code, playdate_date, playdate_time) values (?,?,?,?,?,?)";
+    public void createPlayDate(PlayDate playdate) {
+        String insertPlayDate = "INSERT INTO playdate (address, city, state," +
+                " zip_code, playdate_time, playdate_date, playdate_description, status_type, host_id, invited_id) VALUES (?,?,?,?,?,?,?,?,?,?)";
+        jdbcTemplate.update(insertPlayDate, playdate.getAddress(), playdate.getCity(), playdate.getState(), playdate.getZipCode(),
+                playdate.getPlaydateTime(), playdate.getPlaydateDate(), playdate.getPlaydateDescription(), playdate.getStatusType(), playdate.getHostId(), playdate.getInvitedId());
     }
 
     @Override
-    public void updatePlayDate(PlayDate playDate, int playDateId) {
-        String updatePlaydate = "UPDATE playdate SET username = ?, address = ?," +
-                " city = ?, zip_code = ?, playdate_time = ?, playdate_date =?, " +
-                " playdate_description = ?,  status_type = ? WHERE playdate_id = ?";
-        jdbcTemplate.update(updatePlaydate, playDate.getUsername(), playDate.getAddress(), playDate.getCity(), playDate.getZipCode(), playDate.getDate(), playDate.getTime(), playDateId);
+    public void updatePlayDate(PlayDate playdate, int playDateId) {
+        String updatePlaydate = "UPDATE playdate SET address, city, state," +
+                " zip_code, playdate_time, playdate_date, playdate_description, status_type, host_id, invited_id WHERE playdate_id = ?";
+        jdbcTemplate.update(updatePlaydate, playdate.getAddress(), playdate.getCity(), playdate.getState(), playdate.getZipCode(),
+                playdate.getPlaydateTime(), playdate.getPlaydateDate(), playdate.getPlaydateDescription(), playdate.getStatusType(), playdate.getHostId(), playdate.getInvitedId(), playDateId);
     }
 
     @Override
@@ -87,15 +89,48 @@ public class JdbcPlayDateDao implements PlayDateDao {
         jdbcTemplate.update(deletePlaydate, playDateId);
     }
 
+    @Override
+    public void acceptPlayDate(PlayDate playdate, int playDateId){
+        String statusUpdate = "Accept";
+        String accept = "UPDATE playdate SET address, city, state," +
+                             " zip_code, playdate_time, playdate_date, playdate_description, status_type, host_id, invited_id WHERE playdate_id = ?";
+        jdbcTemplate.update(accept, playdate.getAddress(), playdate.getCity(), playdate.getState(), playdate.getZipCode(),
+                playdate.getPlaydateTime(), playdate.getPlaydateDate(), playdate.getPlaydateDescription(), statusUpdate, playdate.getHostId(), playdate.getInvitedId());
+    }
+
+    @Override
+    public void declinePlayDate(PlayDate playdate, int playDateId){
+        String statusUpdate = "Decline";
+        String decline = "UPDATE playdate SET address, city, state," +
+                " zip_code, playdate_time, playdate_date, playdate_description, status_type, host_id, invited_id WHERE playdate_id = ?";
+        jdbcTemplate.update(decline, playdate.getAddress(), playdate.getCity(), playdate.getState(), playdate.getZipCode(),
+                playdate.getPlaydateTime(), playdate.getPlaydateDate(), playdate.getPlaydateDescription(), statusUpdate, playdate.getHostId(), playdate.getInvitedId());
+    }
+
+    @Override
+    public void cancelPlayDate(PlayDate playdate, int playDateId){
+        String statusUpdate = "Canceled";
+        String cancel = "UPDATE playdate SET address, city, state," +
+                " zip_code, playdate_time, playdate_date, playdate_description, status_type, host_id, invited_id WHERE playdate_id = ?";
+        jdbcTemplate.update(cancel, playdate.getAddress(), playdate.getCity(), playdate.getState(), playdate.getZipCode(),
+                playdate.getPlaydateTime(), playdate.getPlaydateDate(), playdate.getPlaydateDescription(), statusUpdate, playdate.getHostId(), playdate.getInvitedId());
+    }
+
+
+
     private PlayDate mapRowToPlayDate(SqlRowSet rs) {
         PlayDate playDate = new PlayDate();
         playDate.setPlayDateId(rs.getInt("playdate_id"));
-        playDate.setUsername(rs.getString("username"));
         playDate.setAddress(rs.getString("address"));
         playDate.setCity(rs.getString("city"));
+        playDate.setState(rs.getString("state"));
         playDate.setZipCode(rs.getInt("zip_code"));
-        playDate.setDate(rs.getString("playdate_date"));
-        playDate.setTime(rs.getString("playdate_time"));
+        playDate.setPlaydateDate(rs.getDate("playdate_date"));
+        playDate.setPlaydateTime(rs.getTime("playdate_time"));
+        playDate.setPlaydateDescription(rs.getString("playdate_description"));
+        playDate.setStatusType(rs.getString("status_type"));
+        playDate.setHostId(rs.getInt("host_id"));
+        playDate.setInvitedId(rs.getInt("invited_id"));
         return playDate;
     }
 }
