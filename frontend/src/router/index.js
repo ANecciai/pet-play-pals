@@ -8,6 +8,9 @@ import store from '../store/index'
 import Profile from '../views/Profile.vue'
 import Pet from '../views/CreatePet.vue'
 import Playdate from '../views/CreatePlayDate.vue'
+import SearchPets from '../views/SearchPets.vue'
+import PetDetails from '../views/PetDetails.vue'
+//import { compile } from 'vue/types/umd' --- think this was added by mistake but not sure
 
 Vue.use(Router)
 
@@ -87,7 +90,23 @@ const router = new Router({
       meta:{
         requiresAuth: false
       }
+    },
+    {
+      path: "/searchpets",
+      name:"search-pets",
+      component: SearchPets,
+      meta:{
+        requiresAuth: false,
+      }
+    },
+{
+    path: "/pets/id/:petId",
+    name: "pet-details",
+    component: PetDetails,
+    meta:{
+      requiresAuth: false,
     }
+  }
   ]
 })
 
