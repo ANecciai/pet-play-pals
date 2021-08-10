@@ -54,4 +54,5 @@ export default new Vuex.Store({
       state.profile = profile;
     }
   }
+  
 })

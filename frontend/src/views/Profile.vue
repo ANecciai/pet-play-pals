@@ -3,7 +3,6 @@
     <h2>WELCOME BACK, {{$store.state.user.username.toUpperCase()}}! </h2>
     <p v-for="pet in $store.state.pets" v-bind:key="pet.id">{{pet.name}}&nbsp;|&nbsp;{{pet.species}}</p>
     <router-link tag = button v-bind:to="{name: 'pet'}"> ADD PET</router-link>
-    <router-link tag = button v-bind:to="{name: 'playdate'}">ADD PLAYDATE</router-link>
     </div>
   
 </template>
@@ -11,6 +10,7 @@
 <script>
 import profileservice from "@/services/ProfileService";
 import petservice from "@/services/PetService";
+//import playdate from "@/services/PlaydateService";
 
 export default {
     name: "profile",
@@ -27,6 +27,9 @@ export default {
        }
    })
    },
+   //playdates(){
+    //   playdate.getPlaydate().then
+   //}
   
 
    

@@ -33,8 +33,6 @@ export default {
 };
 </script>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
-
 
 #button{
 
