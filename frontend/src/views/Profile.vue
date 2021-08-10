@@ -1,7 +1,6 @@
 <template>
 <div>
-    <h1> PROFILE </h1>
-    <h2>WELCOME BACK {{$store.state.user.username}}!! </h2>
+    <h2>WELCOME BACK, {{$store.state.user.username.toUpperCase()}}! </h2>
     <p v-for="pet in $store.state.pets" v-bind:key="pet.id">{{pet.name}}&nbsp;|&nbsp;{{pet.species}}</p>
     <router-link tag = button v-bind:to="{name: 'pet'}"> ADD PET</router-link>
     <router-link tag = button v-bind:to="{name: 'playdate'}">ADD PLAYDATE</router-link>
