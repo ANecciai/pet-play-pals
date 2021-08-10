@@ -51,6 +51,7 @@ export default new Vuex.Store({
     },
     SET_ACTIVE_PET(state, activePetId){
       state.activePet = activePetId;
+    },
     SET_PROFILE(state, profile){
       state.profile = profile;
     }

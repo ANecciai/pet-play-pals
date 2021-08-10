@@ -33,6 +33,18 @@ public class JdbcPetDao implements PetDao {
     }
 
     @Override
+    public List<Pet> getPetsByZipcode(int zipcode) {
+        String sql = "SELECT * FROM pet JOIN profile using (username) where zipcode = ?";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, zipcode);
+        List<Pet> petList = new ArrayList<>();
+        while (results.next()) {
+            petList.add(mapRowToPet(results));
+        }
+        return petList;
+    }
+
+
+    @Override
     public List<Pet> getPetByUsername(String username) {
         String sql = "SELECT * FROM pet WHERE username = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, username);

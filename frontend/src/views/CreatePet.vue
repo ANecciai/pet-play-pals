@@ -2,64 +2,46 @@
   <div>
     <form v-on:submit.prevent="createPet">
         <div>
-      <label>Pet Name</label>
-        </div>
-        <div>
-      <input v-model="pet.name" placeholder="Pet Name" type="text" />
+      <label>Pet Name<input v-model="pet.name" placeholder="Pet Name" type="text" /></label>
       </div>
       <div>
-      <label>Species</label>
-      </div>
-      <div>
-      <select type="text" placeholder="Species" v-model="pet.species">
-        <option value = "Choose Pet Species">Pet Species</option>
-        <option value = "Dog" > Dog </option>
-        <option value = "Cat"> Cat </option>
-        <option value = "Bird"> Bird </option>
+      <label>Species<select v-model="pet.species">
+      <option value="dog">Dog</option>
+      <option value="cat">Cat</option>
+      <option value="bird">Bird</option>
       </select>
+      </label>
       </div>
       <div>
-      <label>Breed</label>
+      <label>Breed<input type="text" placeholder="Breed" v-model="pet.breed" /></label>
       </div>
       <div>
-      <input type="text" placeholder="Breed" v-model="pet.breed" />
-      </div>
-      <div>
-      <label>Activity Level</label>
-      </div>
-      <div>
-      <select v-model="pet.levelOfActivity">
+      <label>Activity Level<select v-model="pet.levelOfActivity">
           <option value="Choose Activity Level">Activity Level</option>
           <option value="Low">Low</option>
           <option value="Medium">Medium</option>
           <option value="High">High</option>
           </select>
+      </label>
       </div>
       <div>
-      <label>Gender</label>
-      </div>
-      <div>
-      <select v-model="pet.gender">
+      <label>Gender<select v-model="pet.gender">
           <option value="Gender">Gender</option>
           <option value="Male">Male</option>
           <option value="Female">Female</option>
           </select>
+      </label>
       </div>
       <div>
-      <label>Age</label>
+      <label>Age<input placeholder="Age" type="text" v-model="pet.age" /></label>
       </div>
       <div>
-      <input placeholder="Age" type="text" v-model="pet.age" />
+      <label
+        >Description<input placeholder = "Description" type="textarea" v-model="pet.description"
+      /></label>
       </div>
       <div>
-      <label>Description</label>
-      </div>
-      <div>
-      <input placeholder = "Description" type="textarea" v-model="pet.description"
-      />
-      </div>
-      <div>
-      <input id="button" type="submit" value="SAVE PET" />
+      <input id="button" type="submit" value="SUBMIT" />
       </div>
     </form>
   </div>
