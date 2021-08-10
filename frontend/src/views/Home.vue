@@ -1,8 +1,8 @@
 <template>
   <div class="home">
-    <p>Connect with pet owners nearby<br>and schedule playdates!</p>
+    <p>Create a profile to add your pets!</p>
     <div>
-      
+      <img v-bind:src="picture.message" id="random-img"/> 
     </div>
     <div>
     <router-link :to="{ name: 'login' }" tag = button id="button">LOGIN</router-link>
@@ -22,12 +22,12 @@ export default {
   name: "home",
   data() {
     return {
-      message: ""
+      picture: ""
     }
   },
   created() {
-    RandomPicService.get().then(response => {
-      this.message = response.data
+    RandomPicService.picture().then(response => {
+      this.picture = response.data
     });
   }
 };
@@ -53,6 +53,10 @@ export default {
 .home{
   text-align: center;
   color: black;
+}
+
+#random-img {
+  max-width: 500px;
 }
 
 

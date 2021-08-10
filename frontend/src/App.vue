@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <header>
-      <img src="@/images/logo.png">
+      <img src="@/images/logo.png" id="logo"/>
       <nav id="nav">
         <ul>
           <li><router-link v-bind:to="{ name: 'home' }">Home</router-link></li>
@@ -48,6 +48,10 @@ li > a {
 
  a:hover {
    color: #974D21;
+ }
+
+ #logo {
+   width: 300px;
  }
 
 
