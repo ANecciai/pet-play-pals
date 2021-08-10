@@ -25,10 +25,8 @@ export default new Vuex.Store({
     profile: {},
     pets: [],
     activePet: '',
-   
-    
-
   },
+
   mutations: {
     SET_AUTH_TOKEN(state, token) {
       state.token = token;
@@ -52,7 +50,11 @@ export default new Vuex.Store({
     SET_ACTIVE_PET(state, activePetId){
       state.activePet = activePetId;
     },
+<<<<<<< HEAD
       SET_PROFILE(state, profile){
+=======
+    SET_PROFILE(state, profile){
+>>>>>>> 6e88a44675c8928c468a00761abf8f11ffd626b1
       state.profile = profile;
     }
   }
