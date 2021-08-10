@@ -2,7 +2,7 @@
   <div class="home">
     <p>Connect with pet owners nearby<br>and schedule playdates!</p>
     <div>
-      
+      <img v-bind:src="picture.message"/>
     </div>
     <div>
     <router-link :to="{ name: 'login' }" tag = button id="button">LOGIN</router-link>
@@ -22,19 +22,17 @@ export default {
   name: "home",
   data() {
     return {
-      message: ""
+      picture: ""
     }
   },
   created() {
-    RandomPicService.get().then(response => {
-      this.message = response.data
+    RandomPicService.picture().then(response => {
+      this.picture = response.data
     });
   }
 };
 </script>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
-
 
 #button{
 
