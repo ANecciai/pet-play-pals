@@ -4,10 +4,12 @@ import com.techelevator.model.PlayDate;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin
 @Component
 public class JdbcPlayDateDao implements PlayDateDao {
 
