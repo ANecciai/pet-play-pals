@@ -5,6 +5,9 @@
       <label>Pet Name<input v-model="pet.name" placeholder="Pet Name" type="text" /></label>
       </div>
       <div>
+        <label> Species</label>
+      </div>
+      <div>
       <select type="text" placeholder="Species" v-model="pet.species">
         <option value = "Choose Pet Species">Pet Species</option>
         <option value = "dog" > Dog </option>

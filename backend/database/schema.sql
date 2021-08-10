@@ -60,11 +60,11 @@ CREATE TABLE playdate (
   playdate_date date NOT NULL,
   playdate_description text,
   status_type varchar (50),
-  host_id int NOT NULL,
-  invited_id int NOT NULL,
+  host_username varchar(50) NOT NULL,
+  invited_username varchar(50) NOT NULL,
   FOREIGN KEY (status_type) REFERENCES playdate_status(status_type),
-  FOREIGN KEY (host_id) REFERENCES users(user_id),
-  FOREIGN KEY (invited_id) REFERENCES users(user_id)
+  FOREIGN KEY (host_username) REFERENCES users(username),
+  FOREIGN KEY (invited_username) REFERENCES users(username)
   );
 CREATE TABLE forum(
   forum_id serial PRIMARY KEY,

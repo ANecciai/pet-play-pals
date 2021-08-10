@@ -15,20 +15,16 @@ createPet(pet){
     return axios.get(`/pets/username`)
   },
 
-  getAuthConfig(){
-    return {headers: {"Authorization": "JWT " + this.$store.state.token}};
-
-  },
 
   getAllPets(){
     return axios.get(`/allpets`)
   },
 
   getPetById(id){
-    return axios.get(`/pets/${{id}}`)
+    return axios.get(`/pets/${id}`)
   },
 
   getPetByZip(zipcode){
-    return axios.get(`/pets/${{zipcode}}`)
+    return axios.get(`/pets/zipcode/${zipcode}`)
   }
 }
