@@ -19,21 +19,20 @@ public class PetController {
         this.petDao = petDao;
     }
 
-    @PreAuthorize("isAuthenticated()")
+
     @RequestMapping(value = "/allpets", method = RequestMethod.GET)
     public List<Pet> getAllPets() {
         return petDao.listAllPets();
     }
 
-    //works but case sensitive - do we want a search bar or a drop down to delete pet type?
-    @PreAuthorize("isAuthenticated()")
+
     @RequestMapping(value = "/pets/species", method = RequestMethod.GET)
     public List<Pet> getPetsBySpecies(@RequestParam String species){
         return petDao.listAllPetsBySpecies(species);
     }
 
     //working
-    @PreAuthorize("isAuthenticated()")
+
     @RequestMapping(value = "/pets/{id}", method = RequestMethod.GET)
     public Pet getPetByID(@PathVariable int id){
         return petDao.getPetById(id);
