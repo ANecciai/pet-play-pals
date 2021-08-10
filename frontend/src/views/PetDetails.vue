@@ -12,10 +12,10 @@
 
 <script>
 import petService from "@/services/PetService"; 
-import SearchPets from '@/views/SearchPets';
+
 export default {
   name: "pet-details",
-  components:{ SearchPets },
+
   props: ["petId"],
   computed:{
     pet(){

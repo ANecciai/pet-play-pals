@@ -6,6 +6,6 @@ const http = axios.create({
 export default {
     picture() {
         //returning
-        return http.get('/');
+        return http.get();
     }
 }
