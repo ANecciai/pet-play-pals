@@ -24,6 +24,7 @@ export default new Vuex.Store({
     user: currentUser || {},
     profile: {},
     pets: [],
+    activePet: '',
    
     
 
@@ -48,9 +49,12 @@ export default new Vuex.Store({
     SET_PETS(state, pets){
       state.pets = pets;
     },
-    SET_PROFILE(state, profile){
+    SET_ACTIVE_PET(state, activePetId){
+      state.activePet = activePetId;
+    },
+      SET_PROFILE(state, profile){
       state.profile = profile;
     }
-    
   }
+  
 })

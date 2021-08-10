@@ -10,9 +10,5 @@ createPlaydate(playdate){
     return axios.put(`/playdate/edit` + playdateId, playdate)
   },
 
-
-  getAuthConfig(){
-    return {headers: {"Authorization": "JWT " + this.$store.state.token}};
-
-  }
+  
 }

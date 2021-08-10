@@ -12,6 +12,7 @@
 <script>
 import profileservice from "@/services/ProfileService";
 import petservice from "@/services/PetService";
+//import playdate from "@/services/PlaydateService";
 
 export default {
     name: "profile",
@@ -28,6 +29,9 @@ export default {
        }
    })
    },
+   //playdates(){
+    //   playdate.getPlaydate().then
+   //}
   
 
    

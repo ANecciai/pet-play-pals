@@ -5,11 +5,13 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin
 @Component
 public class JdbcPetDao implements PetDao {
 
