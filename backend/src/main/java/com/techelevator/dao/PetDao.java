@@ -15,6 +15,8 @@ public interface PetDao {
 
     List<Pet> listAllPetsBySpecies(String species);
 
+    List<Pet> getPetsByZipcode(int zipcode);
+
     void createPet(Pet pet);
 
     void updatePet(Pet pet, int petId, Principal currentUser);

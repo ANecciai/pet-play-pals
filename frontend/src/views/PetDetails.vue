@@ -12,19 +12,16 @@
 
 <script>
 import petService from "@/services/PetService"; 
+import SearchPets from '@/views/SearchPets';
 export default {
   name: "pet-details",
+  components:{ SearchPets },
+  props: ["petId"],
   computed:{
     pet(){
-    return petService.getPetById(this.$store.state.activePetId)
+    return petService.getPetById(this.petId)
   }
   },
-  created(){
-    const activePetId = this.$route.params.petId;
-    this.$store.commit("SET_ACTIVE_PET",activePetId);   
-         
-    
-  }
 
 };
 </script>
