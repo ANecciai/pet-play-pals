@@ -18,4 +18,34 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+h1,
+li > a {
+  text-transform: uppercase;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+li {
+  list-style: none;
+}
+
+li > a {
+  margin: 20px;
+}
+ a {
+   color: #7AB79A;
+  font-size: .85em;
+  text-decoration: none;
+ }
+
+ a:hover {
+   color: black;
+ }
+
+
 </style>
