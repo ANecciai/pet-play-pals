@@ -1,8 +1,8 @@
 <template>
   <div class="home">
-    <p>Connect with pet owners nearby<br>and schedule playdates!</p>
+    <p>Create a profile to add your pets!</p>
     <div>
-      <img v-bind:src="picture.message"/>
+      <img v-bind:src="picture.message" id="random-img"/> 
     </div>
     <div>
     <router-link :to="{ name: 'login' }" tag = button id="button">LOGIN</router-link>
@@ -51,6 +51,10 @@ export default {
 .home{
   text-align: center;
   color: black;
+}
+
+#random-img {
+  max-width: 500px;
 }
 
 
