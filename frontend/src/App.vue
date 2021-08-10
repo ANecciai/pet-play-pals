@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <header>
-      <h1>Pet Play Pals</h1>
+      <img src="@/images/logo.png">
       <nav id="nav">
         <ul>
           <li><router-link v-bind:to="{ name: 'home' }">Home</router-link></li>
@@ -41,13 +41,13 @@ li > a {
   margin: 20px;
 }
  a {
-   color: #7AB79A;
+   color: #E37636;
   font-size: .85em;
   text-decoration: none;
  }
 
  a:hover {
-   color: black;
+   color: #974D21;
  }
 
 
