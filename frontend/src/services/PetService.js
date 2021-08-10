@@ -26,5 +26,9 @@ createPet(pet){
 
   getPetById(id){
     return axios.get(`/pets/${{id}}`)
+  },
+
+  getPetByZip(zipcode){
+    return axios.get(`/pets/${{zipcode}}`)
   }
 }
