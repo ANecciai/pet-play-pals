@@ -13,9 +13,9 @@
       <div>
       <select type="text" placeholder="Species" v-model="pet.species">
         <option value = "Choose Pet Species">Pet Species</option>
-        <option value = "Dog" > Dog </option>
-        <option value = "Cat"> Cat </option>
-        <option value = "Bird"> Bird </option>
+        <option value = "dog" > Dog </option>
+        <option value = "cat"> Cat </option>
+        <option value = "bird"> Bird </option>
       </select>
       </div>
       <div>
