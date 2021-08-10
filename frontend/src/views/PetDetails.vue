@@ -12,19 +12,15 @@
 
 <script>
 import petService from "@/services/PetService"; 
+
 export default {
   name: "pet-details",
+  props: ["petId"],
   computed:{
     pet(){
-    return petService.getPetById(this.$store.state.activePetId)
+    return petService.getPetById(this.petId)
   }
   },
-  created(){
-    const activePetId = this.$route.params.petId;
-    this.$store.commit("SET_ACTIVE_PET",activePetId);   
-         
-    
-  }
 
 };
 </script>

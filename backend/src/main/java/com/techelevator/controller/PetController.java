@@ -38,6 +38,11 @@ public class PetController {
         return petDao.getPetById(id);
     }
 
+    @RequestMapping(value = "/pets/zipcode/{zipcode}", method = RequestMethod.GET)
+    public List<Pet> getPetsByZip(@PathVariable int zipcode){
+        return petDao.getPetsByZipcode(zipcode);
+    }
+
     @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/pets/username", method = RequestMethod.GET)
     public List<Pet> getPetByUsername(Principal principal){
