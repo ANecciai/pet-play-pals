@@ -12,11 +12,11 @@ public class PlayDate {
     private String state;
     private int zipCode;
     private Date playdateDate;
-    private Time playdateTime;
+    private String playdateTime;
     private String playdateDescription;
     private String statusType;
-    private int invitedId;
-    private int hostId;
+    private String invitedUsername;
+    private String hostUsername;
 
 
 
@@ -69,13 +69,6 @@ public class PlayDate {
         this.playdateDate = playdateDate;
     }
 
-    public Time getPlaydateTime() {
-        return playdateTime;
-    }
-
-    public void setPlaydateTime(Time playdateTime) {
-        this.playdateTime = playdateTime;
-    }
 
     public String getPlaydateDescription() {
         return playdateDescription;
@@ -93,19 +86,27 @@ public class PlayDate {
         this.statusType = statusType;
     }
 
-    public int getInvitedId() {
-        return invitedId;
+    public String getPlaydateTime() {
+        return playdateTime;
     }
 
-    public void setInvitedId(int invitedId) {
-        this.invitedId = invitedId;
+    public void setPlaydateTime(String playdateTime) {
+        this.playdateTime = playdateTime;
     }
 
-    public int getHostId() {
-        return hostId;
+    public String getInvitedUsername() {
+        return invitedUsername;
     }
 
-    public void setHostId(int hostId) {
-        this.hostId = hostId;
+    public void setInvitedUsername(String invitedUsername) {
+        this.invitedUsername = invitedUsername;
+    }
+
+    public String getHostUsername() {
+        return hostUsername;
+    }
+
+    public void setHostUsername(String hostUsername) {
+        this.hostUsername = hostUsername;
     }
 }

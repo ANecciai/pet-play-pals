@@ -4,6 +4,9 @@
     <h3> YOUR PETS </h3>
     <p v-for="pet in $store.state.pets" v-bind:key="pet.id">{{pet.name}}&nbsp;|&nbsp;{{pet.species}}</p>
     <h3> YOUR PLAYDATES </h3>
+    <div v-for="playdate in $store.state.playdates" v-bind:key="playdate.playdateId">
+        <router-link v-bind:to="{name:'playdate-details', params: {playdateId:playdate.playDateId}}"> {{playdate.playdateDate}} &nbsp;|&nbsp; Time: {{playdate.playdateTime}}  &nbsp;|&nbsp; Host: {{playdate.hostUsername}} &nbsp;|&nbsp; Invitee: {{playdate.invitedUsername}}</router-link>
+    </div>
     <router-link tag = button v-bind:to="{name: 'pet'}"> ADD PET</router-link>
     </div>
   
@@ -12,6 +15,7 @@
 <script>
 import profileservice from "@/services/ProfileService";
 import petservice from "@/services/PetService";
+import playdateService from "@/services/PlaydateService";
 //import playdate from "@/services/PlaydateService";
 
 export default {
@@ -26,6 +30,11 @@ export default {
    petservice.getPet().then(response => {
        if(response.status == 200){
            this.$store.commit("SET_PETS", response.data);
+       }
+   }),
+   playdateService.getMyPlaydates().then(response => {
+       if(response.status == 200){
+           this.$store.commit("SET_PLAYDATES", response.data);
        }
    })
    },

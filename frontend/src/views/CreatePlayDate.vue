@@ -2,8 +2,8 @@
   <div>
     <form v-on:submit.prevent="createPlaydate">
       <div>
-        <label
-          >Address</label>
+        <label>
+          Address</label>
       </div>
       <div>
           <input
@@ -80,16 +80,25 @@ export default {
         zipCode: "",
         playdateDate: "",
         playdateTime: "",
-        status: "",
+        status: "Pending",
       },
+      username: "",
     };
   },
   methods: {
     createPlaydate() {
-      playdateService.createPlaydate(this.playdate);
+      playdateService.createPlaydate(this.playdate, this.username).then(response => {
+        if(response.status == 200){
+          this.$router.push(`/profile/$(this.$store.state.user.username)`);
+        }
+      })
     },
   },
-};
+  created(){
+    this.username = this.$route.params.username;
+  },
+}
+
 </script>
 
 <style>

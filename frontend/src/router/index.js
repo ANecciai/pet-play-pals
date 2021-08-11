@@ -7,9 +7,11 @@ import Register from '../views/Register.vue'
 import store from '../store/index'
 import Profile from '../views/Profile.vue'
 import Pet from '../views/CreatePet.vue'
-import Playdate from '../views/CreatePlayDate.vue'
+import CreatePlaydate from '../views/CreatePlayDate.vue'
 import SearchPets from '../views/SearchPets.vue'
 import PetDetails from '../views/PetDetails.vue'
+import PlayDateDetails from '../views/PlayDateDetails.vue'
+import UserDetails from '../views/UserDetails.vue'
 //import { compile } from 'vue/types/umd' --- think this was added by mistake but not sure
 
 Vue.use(Router)
@@ -84,11 +86,11 @@ const router = new Router({
     }
   },
     {
-      path: "/playdate",
+      path: "/playdate/:username",
       name: "playdate",
-      component: Playdate,
+      component: CreatePlaydate,
       meta:{
-        requiresAuth: false
+        requiresAuth: true
       }
     },
     {
@@ -106,7 +108,22 @@ const router = new Router({
     meta:{
       requiresAuth: false,
     }
+  },
+  {
+  path: "/playdate/details/:playdateId",
+  name: "playdate-details",
+  component: PlayDateDetails,
+  meta:{
+    requiresAuth: true
   }
+},{
+path: "/profile/user/:username",
+name: "user-details",
+component: UserDetails,
+meta:{
+  requiresAuth: false,
+}
+}
   ]
 })
 
