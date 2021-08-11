@@ -18,8 +18,8 @@ getPlaydateById(playdateId){
   return axios.get(`/playdates/${playdateId}`)
 },
 
-acceptPlaydate(playdateId){
-  return axios.put(`/playdates/accept/${playdateId}`)
+acceptPlaydate(id){
+  return axios.put(`/playdates/accept/${id}`)
 },
 declinePlaydate(playdateId){
   return axios.put(`/playdates/decline/${playdateId}`)
