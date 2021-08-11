@@ -24,7 +24,7 @@
         }"
       >
         {{ playdate.playdateDate }} &nbsp;|&nbsp; Time:
-        {{ playdate.playdateTime }} &nbsp;|&nbsp; Host:
+        {{ formatTime(playdate.playdateTime) }} &nbsp;|&nbsp; Host:
         {{ playdate.hostUsername }} &nbsp;|&nbsp; Invitee:
         {{ playdate.invitedUsername }}</router-link
       >
@@ -79,6 +79,16 @@ export default {
         });
       }
     },
+
+    formatTime(playdateTime) {
+
+            let hours24 = parseInt(playdateTime.substring(0,2));
+            let hours = ((hours24 + 11) % 12) + 1;
+            let amPm = hours24 > 11 ? 'pm' : 'am';
+            let minutes = playdateTime.substring(2);
+            return hours + minutes + amPm;
+
+        }
   },
   created() {
     petservice.getMyPets().then((response) => {
