@@ -28,6 +28,6 @@ createPet(pet){
     return axios.get(`/pets/zipcode/${zipcode}`)
   },
   deletePet(id){
-    return axios.delete()
+    return axios.delete(`/pets/delete`, id)
   }
 }
