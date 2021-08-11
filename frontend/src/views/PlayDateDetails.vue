@@ -1,11 +1,12 @@
 <template>
   <div class="playdate-details">
     <h2>Play Date Details</h2> 
-    <p>Host: <router-link v-bind:to="{name: 'user-details', params:{username:playdate.hostUsername}}">{{playdate.hostUsername}}</router-link></p>
-    <p>Invitee: <router-link v-bind:to="{name: 'user-details', params:{username:playdate.invitedUsername}}">{{playdate.invitedUsername}}</router-link></p>
+    <p>Host: <router-link v-bind:to="{name: 'user-details', params: {username:playdate.hostUsername}}">{{playdate.hostUsername}}</router-link></p>
+    <p>Invitee: <router-link v-bind:to="{name: 'user-details', params: {username:playdate.invitedUsername}}">{{playdate.invitedUsername}}</router-link></p>
     <p>Date: {{playdate.playdateDate}}</p>
     <p>Time: {{playdate.playdateTime}}</p>
     <p>Location: {{playdate.address}} {{playdate.city}} {{playdate.state}} {{playdate.zipCode}}</p> 
+    
   </div>
 </template>
 

@@ -117,13 +117,13 @@ const router = new Router({
     requiresAuth: true
   }
 },{
-path: "/profile/user/:username",
+path: "/user/details/:username",
 name: "user-details",
 component: UserDetails,
 meta:{
   requiresAuth: false,
 }
-}
+},
   ]
 })
 

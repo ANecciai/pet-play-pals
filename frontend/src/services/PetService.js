@@ -11,8 +11,8 @@ createPet(pet){
     return axios.put(`/pets/` + petId, pet)
   },
 
-  getPet(){
-    return axios.get(`/pets/username`)
+  getMyPets(){
+    return axios.get(`/mypets`)
   },
 
 
@@ -26,5 +26,9 @@ createPet(pet){
 
   getPetByZip(zipcode){
     return axios.get(`/pets/zipcode/${zipcode}`)
+  },
+
+  getPetsByUsername(username){
+    return axios.get(`/pets/username/${username}`)
   }
 }
