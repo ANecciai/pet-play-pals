@@ -55,7 +55,10 @@ export default {
 
 #random-img {
   max-width: 500px;
+  padding: 3px;
+  border:5px solid black;
 }
+
 
 
 </style>
