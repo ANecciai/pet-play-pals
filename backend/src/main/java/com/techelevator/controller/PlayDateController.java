@@ -49,10 +49,10 @@ public class PlayDateController{
 
 
     @PreAuthorize("isAuthenticated()")
-    @RequestMapping(value = "/playdates/create", method = RequestMethod.POST)
-    public void createPlayDate(Principal principal, @RequestBody PlayDate playDate){
-        String currentUser = principal.getName();
-        playDate.setHostId(userDao.findIdByUsername(currentUser));
+    @RequestMapping(value = "/playdates/create/{username}", method = RequestMethod.POST)
+    public void createPlayDate(Principal principal, @RequestBody PlayDate playDate, @PathVariable String username){
+        playDate.setHostUsername(principal.getName());
+        playDate.setInvitedUsername(username);
         playDao.createPlayDate(playDate);
     }
 
@@ -61,8 +61,7 @@ public class PlayDateController{
     @RequestMapping(value = "/playdates/update", method = RequestMethod.PUT)
     public void updatePlayDate(Principal principal, @RequestBody PlayDate playDate, @RequestBody int playDateId){
         String currentUser = principal.getName();
-        int currentUserId = userDao.findIdByUsername(currentUser);
-        if (currentUserId == playDate.getHostId()){
+        if (currentUser == playDate.getHostUsername()){
             playDao.updatePlayDate(playDate, playDateId);
         }
     }
@@ -72,8 +71,7 @@ public class PlayDateController{
     @RequestMapping(value = "/playdates/accept", method = RequestMethod.PUT)
     public void acceptPlayDate(Principal principal, @RequestBody PlayDate playDate, @RequestBody int playDateId){
         String currentUser = principal.getName();
-        int currentUserId = userDao.findIdByUsername(currentUser);
-        if (currentUserId == playDate.getInvitedId()){
+        if (currentUser == playDate.getInvitedUsername()){
             playDao.acceptPlayDate(playDate, playDateId);
         }
     }
@@ -82,8 +80,7 @@ public class PlayDateController{
     @RequestMapping(value = "/playdates/decline", method = RequestMethod.PUT)
     public void declinePlayDate(Principal principal, @RequestBody PlayDate playDate, @RequestBody int playDateId){
         String currentUser = principal.getName();
-        int currentUserId = userDao.findIdByUsername(currentUser);
-        if (currentUserId == playDate.getInvitedId()){
+        if (currentUser == playDate.getInvitedUsername()){
             playDao.declinePlayDate(playDate, playDateId);
         }
     }
@@ -92,8 +89,7 @@ public class PlayDateController{
     @RequestMapping(value = "/playdates/cancel", method = RequestMethod.PUT)
     public void cancelPlayDate(Principal principal, @RequestBody PlayDate playDate, @RequestBody int playDateId){
         String currentUser = principal.getName();
-        int currentUserId = userDao.findIdByUsername(currentUser);
-        if (currentUserId == playDate.getInvitedId() || currentUserId == playDate.getHostId()){
+        if (currentUser == playDate.getInvitedUsername() || currentUser == playDate.getHostUsername()){
             playDao.cancelPlayDate(playDate, playDateId);
         }
     }

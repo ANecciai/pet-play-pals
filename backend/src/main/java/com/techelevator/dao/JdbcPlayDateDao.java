@@ -46,9 +46,9 @@ public class JdbcPlayDateDao implements PlayDateDao {
     @Override
     public List<PlayDate> getAllPlayDatesByUsername(String username) {
         List<PlayDate> playDates = new ArrayList<>();
-        String sql = "SELECT * FROM playdate WHERE username = ?";
+        String sql = "SELECT * FROM playdate WHERE host_username = ? OR invited_username = ?";
 
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, username);
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, username, username);
         while(results.next()) {
             PlayDate playDate = mapRowToPlayDate(results);
             playDates.add(playDate);
@@ -72,9 +72,9 @@ public class JdbcPlayDateDao implements PlayDateDao {
     @Override
     public void createPlayDate(PlayDate playdate) {
         String insertPlayDate = "INSERT INTO playdate (address, city, state," +
-                " zip_code, playdate_time, playdate_date, playdate_description, status_type, host_id, invited_id) VALUES (?,?,?,?,?,?,?,?,?,?)";
+                " zip_code, playdate_time, playdate_date, playdate_description, status_type, host_username, invited_username) VALUES (?,?,?,?,?,?,?,?,?,?)";
         jdbcTemplate.update(insertPlayDate, playdate.getAddress(), playdate.getCity(), playdate.getState(), playdate.getZipCode(),
-                playdate.getPlaydateTime(), playdate.getPlaydateDate(), playdate.getPlaydateDescription(), playdate.getStatusType(), playdate.getHostId(), playdate.getInvitedId());
+                playdate.getPlaydateTime(), playdate.getPlaydateDate(), playdate.getPlaydateDescription(), playdate.getStatusType(), playdate.getHostUsername(), playdate.getInvitedUsername());
     }
 
     @Override
@@ -82,12 +82,12 @@ public class JdbcPlayDateDao implements PlayDateDao {
         String updatePlaydate = "UPDATE playdate SET address, city, state," +
                 " zip_code, playdate_time, playdate_date, playdate_description, status_type, host_id, invited_id WHERE playdate_id = ?";
         jdbcTemplate.update(updatePlaydate, playdate.getAddress(), playdate.getCity(), playdate.getState(), playdate.getZipCode(),
-                playdate.getPlaydateTime(), playdate.getPlaydateDate(), playdate.getPlaydateDescription(), playdate.getStatusType(), playdate.getHostId(), playdate.getInvitedId(), playDateId);
+                playdate.getPlaydateTime(), playdate.getPlaydateDate(), playdate.getPlaydateDescription(), playdate.getStatusType(), playdate.getHostUsername(), playdate.getInvitedUsername(), playDateId);
     }
 
     @Override
     public void deletePlayDate(PlayDate playDate, int playDateId) {
-        String deletePlaydate = "SELECT * FROM playdate WHERE username = ?";
+        String deletePlaydate = "SELECT * FROM playdate WHERE host_username = ? OR invited_username = ?";
         jdbcTemplate.update(deletePlaydate, playDateId);
     }
 
@@ -97,7 +97,7 @@ public class JdbcPlayDateDao implements PlayDateDao {
         String accept = "UPDATE playdate SET address, city, state," +
                              " zip_code, playdate_time, playdate_date, playdate_description, status_type, host_id, invited_id WHERE playdate_id = ?";
         jdbcTemplate.update(accept, playdate.getAddress(), playdate.getCity(), playdate.getState(), playdate.getZipCode(),
-                playdate.getPlaydateTime(), playdate.getPlaydateDate(), playdate.getPlaydateDescription(), statusUpdate, playdate.getHostId(), playdate.getInvitedId());
+                playdate.getPlaydateTime(), playdate.getPlaydateDate(), playdate.getPlaydateDescription(), statusUpdate, playdate.getHostUsername(), playdate.getInvitedUsername());
     }
 
     @Override
@@ -106,7 +106,7 @@ public class JdbcPlayDateDao implements PlayDateDao {
         String decline = "UPDATE playdate SET address, city, state," +
                 " zip_code, playdate_time, playdate_date, playdate_description, status_type, host_id, invited_id WHERE playdate_id = ?";
         jdbcTemplate.update(decline, playdate.getAddress(), playdate.getCity(), playdate.getState(), playdate.getZipCode(),
-                playdate.getPlaydateTime(), playdate.getPlaydateDate(), playdate.getPlaydateDescription(), statusUpdate, playdate.getHostId(), playdate.getInvitedId());
+                playdate.getPlaydateTime(), playdate.getPlaydateDate(), playdate.getPlaydateDescription(), statusUpdate, playdate.getHostUsername(), playdate.getInvitedUsername());
     }
 
     @Override
@@ -115,7 +115,7 @@ public class JdbcPlayDateDao implements PlayDateDao {
         String cancel = "UPDATE playdate SET address, city, state," +
                 " zip_code, playdate_time, playdate_date, playdate_description, status_type, host_id, invited_id WHERE playdate_id = ?";
         jdbcTemplate.update(cancel, playdate.getAddress(), playdate.getCity(), playdate.getState(), playdate.getZipCode(),
-                playdate.getPlaydateTime(), playdate.getPlaydateDate(), playdate.getPlaydateDescription(), statusUpdate, playdate.getHostId(), playdate.getInvitedId());
+                playdate.getPlaydateTime(), playdate.getPlaydateDate(), playdate.getPlaydateDescription(), statusUpdate, playdate.getHostUsername(), playdate.getInvitedUsername());
     }
 
 
@@ -128,11 +128,11 @@ public class JdbcPlayDateDao implements PlayDateDao {
         playDate.setState(rs.getString("state"));
         playDate.setZipCode(rs.getInt("zip_code"));
         playDate.setPlaydateDate(rs.getDate("playdate_date"));
-        playDate.setPlaydateTime(rs.getTime("playdate_time"));
+        playDate.setPlaydateTime(rs.getString("playdate_time"));
         playDate.setPlaydateDescription(rs.getString("playdate_description"));
         playDate.setStatusType(rs.getString("status_type"));
-        playDate.setHostId(rs.getInt("host_id"));
-        playDate.setInvitedId(rs.getInt("invited_id"));
+        playDate.setHostUsername(rs.getString("host_username"));
+        playDate.setInvitedUsername(rs.getString("invited_username"));
         return playDate;
     }
 }

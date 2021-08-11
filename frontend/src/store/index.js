@@ -24,7 +24,7 @@ export default new Vuex.Store({
     user: currentUser || {},
     profile: {},
     pets: [],
-    activePet: '',
+    playdates: [],
   },
 
   mutations: {
@@ -52,6 +52,9 @@ export default new Vuex.Store({
     },
     SET_PROFILE(state, profile){
       state.profile = profile;
+    },
+    SET_PLAYDATES(state, playdates){
+      state.playdates = playdates;
     }
   }
   

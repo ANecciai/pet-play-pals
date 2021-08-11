@@ -8,5 +8,9 @@ profile(user){
   
   editProfile(user){
     return axios.put(`/profiles/`, user)
-  }
+  },
+
+  viewUserProfile(username){
+    return axios.get(`/profiles/${username}`)
+  },
 }

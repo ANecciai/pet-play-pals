@@ -2,13 +2,21 @@ import axios from 'axios';
 
 export default {
 
-createPlaydate(playdate){
-    return axios.post(`/playdate/create`, this.getAuthConfig(), playdate)
+createPlaydate(playdate, username){
+    return axios.post(`/playdates/create/${username}`, playdate)
   },
   
-  editPet(playdate, playdateId){
-    return axios.put(`/playdate/edit` + playdateId, playdate)
+  editPlaydate(playdate, playdateId){
+    return axios.put(`/playdates/edit` + playdateId, playdate)
   },
+
+getMyPlaydates(){
+  return axios.get(`/myplaydates`)
+},  
+
+getPlaydateById(playdateId){
+  return axios.get(`/playdates/${playdateId}`)
+}
 
   
 }
