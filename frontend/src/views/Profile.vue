@@ -3,14 +3,11 @@
     <h2>WELCOME BACK, {{$store.state.user.username.toUpperCase()}}! </h2>
     <h3> YOUR PETS </h3>
     <p v-for="pet in $store.state.pets" v-bind:key="pet.id">{{pet.name}}&nbsp;|&nbsp;{{pet.species}}</p>
-     <router-link tag = button v-bind:to="{name: 'pet'}"> ADD PET</router-link>
+    <router-link tag = button v-bind:to="{name: 'pet'}"> ADD PET</router-link>
 
     <h3> YOUR PLAYDATES </h3>
     <div v-for="playdate in $store.state.playdates" v-bind:key="playdate.playdateId">
-        <router-link v-bind:to="{name:'playdate-details', params: {playdateId:playdate.playDateId}}"> {{playdate.playdateDate}} &nbsp;|&nbsp; Time: {{playdate.playdateTime}}  &nbsp;|&nbsp; Host: {{playdate.hostUsername}} &nbsp;|&nbsp; Invitee: {{playdate.invitedUsername}}</router-link>
-        <button v-on:click="accept()" value="Accept">Accept</button>
-        <button v-on:click="decline()" value="Decline">Decline</button>
-        <button v-on:click="accept()" value="Accept">Cancel</button>
+        <router-link v-bind:to="{name:'playdate-details', params: {playdateId:playdate.playDateId}}"> {{playdate.playdateDate}} &nbsp;|&nbsp; Time: {{playdate.playdateTime}}  &nbsp;|&nbsp; Host: {{playdate.hostUsername}} &nbsp;|&nbsp; Invitee: {{playdate.invitedUsername}} &nbsp;|&nbsp; Status: {{playdate.statusType}}</router-link>
     </div>
     
    
@@ -30,7 +27,7 @@ export default {
    methods: {
        retrieveUser(){
            profileservice.profile(this.profile)
-       }
+       },
    },
    created(){
    petservice.getMyPets().then(response => {

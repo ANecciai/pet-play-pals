@@ -68,29 +68,32 @@ public class PlayDateController{
 
 
     @PreAuthorize("isAuthenticated()")
-    @RequestMapping(value = "/playdates/accept", method = RequestMethod.PUT)
-    public void acceptPlayDate(Principal principal, @RequestBody PlayDate playDate, @RequestBody int playDateId){
+    @RequestMapping(value = "/playdates/accept/{id}", method = RequestMethod.PUT)
+    public void acceptPlayDate(Principal principal, @PathVariable int id){
+        PlayDate playDate = playDao.getPlayDateByPlaydateId(id);
         String currentUser = principal.getName();
         if (currentUser == playDate.getInvitedUsername()){
-            playDao.acceptPlayDate(playDate, playDateId);
+            playDao.acceptPlayDate(playDate, id);
         }
     }
 
     @PreAuthorize("isAuthenticated()")
-    @RequestMapping(value = "/playdates/decline", method = RequestMethod.PUT)
-    public void declinePlayDate(Principal principal, @RequestBody PlayDate playDate, @RequestBody int playDateId){
+    @RequestMapping(value = "/playdates/decline/{id}", method = RequestMethod.PUT)
+    public void declinePlayDate(Principal principal, @PathVariable int id){
+        PlayDate playDate = playDao.getPlayDateByPlaydateId(id);
         String currentUser = principal.getName();
         if (currentUser == playDate.getInvitedUsername()){
-            playDao.declinePlayDate(playDate, playDateId);
+            playDao.declinePlayDate(playDate, id);
         }
     }
 
     @PreAuthorize("isAuthenticated()")
-    @RequestMapping(value = "/playdates/cancel", method = RequestMethod.PUT)
-    public void cancelPlayDate(Principal principal, @RequestBody PlayDate playDate, @RequestBody int playDateId){
+    @RequestMapping(value = "/playdates/cancel/{id}", method = RequestMethod.PUT)
+    public void cancelPlayDate(Principal principal, @PathVariable int id){
+        PlayDate playDate = playDao.getPlayDateByPlaydateId(id);
         String currentUser = principal.getName();
         if (currentUser == playDate.getInvitedUsername() || currentUser == playDate.getHostUsername()){
-            playDao.cancelPlayDate(playDate, playDateId);
+            playDao.cancelPlayDate(playDate, id);
         }
     }
 
