@@ -10,7 +10,7 @@
       <p>Breed: {{pet.breed}}</p>
       <p>Activity Level: {{pet.levelOfActivity}}</p>
       <p>Description: {{pet.description}}</p>
-      <router-link tag = button v-bind:to="{name: 'playdate'}">SCHEDULE PLAYDATE</router-link>
+      <router-link tag = button v-bind:to="{name: 'playdate', params:{username: pet.username}}">SCHEDULE PLAYDATE</router-link>
   </div>
 </template>
 
@@ -22,13 +22,15 @@ export default {
   data() {
     return {
       pet: {
+  
         name: "",
         species: "",
         breed: "",
         levelOfActivity: "",
         gender: "",
         age: "",
-        description: "",
+        description: ""
+        
       },
     };
   },

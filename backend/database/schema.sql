@@ -56,7 +56,7 @@ CREATE TABLE playdate (
   city varchar(50) NOT NULL,
   state varchar(25) NOT NULL,
   zip_code int NOT NULL,
-  playdate_time time NOT NULL,
+  playdate_time varchar (10) NOT NULL,
   playdate_date date NOT NULL,
   playdate_description text,
   status_type varchar (50),
