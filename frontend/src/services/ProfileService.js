@@ -11,6 +11,6 @@ profile(user){
   },
 
   viewUserProfile(username){
-    return axios.get(`/profiles/${username}`)
+    return axios.get(`/profiles/details/${username}`)
   },
 }

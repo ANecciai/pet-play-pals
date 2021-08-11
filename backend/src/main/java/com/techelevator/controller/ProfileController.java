@@ -31,7 +31,7 @@ public class ProfileController {
     }
 
     @PreAuthorize("isAuthenticated()")
-    @RequestMapping(value = "/profiles/{username}", method = RequestMethod.GET)
+    @RequestMapping(value = "/profiles/details/{username}", method = RequestMethod.GET)
     public Profile getProfileByUsername(@PathVariable String username){
         return profileDao.getProfileByUsername(username);
     }

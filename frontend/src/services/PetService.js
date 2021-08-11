@@ -11,8 +11,8 @@ createPet(pet){
     return axios.put(`/pets/` + petId, pet)
   },
 
-  getPet(){
-    return axios.get(`/pets/username`)
+  getMyPets(){
+    return axios.get(`/mypets`)
   },
 
 
@@ -29,5 +29,8 @@ createPet(pet){
   },
   deletePet(id){
     return axios.delete(`/pets/delete`, id)
+  },
+  getPetsByUsername(username){
+    return axios.get(`/pets/username/${username}`)
   }
 }
