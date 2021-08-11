@@ -27,7 +27,9 @@ createPet(pet){
   getPetByZip(zipcode){
     return axios.get(`/pets/zipcode/${zipcode}`)
   },
-
+  deletePet(petId){
+    return axios.delete(`/pets/delete/${petId}`)
+  },
   getPetsByUsername(username){
     return axios.get(`/pets/username/${username}`)
   }

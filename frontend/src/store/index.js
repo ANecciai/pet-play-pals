@@ -55,6 +55,11 @@ export default new Vuex.Store({
     },
     SET_PLAYDATES(state, playdates){
       state.playdates = playdates;
+    },
+    DELETE_PET(state, petToDelete){
+      state.pets = state.pets.filter(pet =>{
+        return pet.id !== petToDelete;
+      });
     }
   }
   

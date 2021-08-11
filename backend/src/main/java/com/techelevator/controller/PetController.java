@@ -43,6 +43,7 @@ public class PetController {
         return petDao.getPetsByZipcode(zipcode);
     }
 
+
     @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/mypets", method = RequestMethod.GET)
     public List<Pet> getMyPets(Principal principal){
@@ -70,8 +71,8 @@ public class PetController {
     }
 
     @PreAuthorize("isAuthenticated()")
-    @RequestMapping(value = "/pets/delete", method = RequestMethod.DELETE)
-    public void deletePet(Principal principal, @RequestBody int petId){
+    @RequestMapping(value = "/pets/delete/{petId}", method = RequestMethod.DELETE)
+    public void deletePet(Principal principal, @PathVariable int petId){
         String currentUser = principal.getName();
         petDao.deletePet(currentUser, petId);
     }
