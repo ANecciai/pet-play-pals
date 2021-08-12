@@ -16,6 +16,19 @@ getMyPlaydates(){
 
 getPlaydateById(playdateId){
   return axios.get(`/playdates/${playdateId}`)
+},
+
+acceptPlaydate(id){
+  return axios.put(`/playdates/accept/${id}`)
+},
+declinePlaydate(playdateId){
+  return axios.put(`/playdates/decline/${playdateId}`)
+},
+cancelPlaydate(playdateId){
+  return axios.put(`/playdates/cancel/${playdateId}`)
+},
+markExpired(playdateId){
+  return axios.put(`/playdates/expired/${playdateId}`)
 }
 
   

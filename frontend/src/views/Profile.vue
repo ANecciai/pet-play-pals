@@ -1,5 +1,5 @@
 <template>
-  <div>
+<div>
     <h2>WELCOME BACK, {{ $store.state.user.username.toUpperCase() }}!</h2>
     <h3>YOUR PETS</h3>
     <div v-for="pet in $store.state.pets" v-bind:key="pet.id">
@@ -26,29 +26,10 @@
         {{ playdate.playdateDate }} &nbsp;|&nbsp; Time:
         {{ formatTime(playdate.playdateTime) }} &nbsp;|&nbsp; Host:
         {{ playdate.hostUsername }} &nbsp;|&nbsp; Invitee:
-        {{ playdate.invitedUsername }}</router-link
+        {{ playdate.invitedUsername }} &nbsp;|&nbsp; Status: 
+        {{ playdate.statusType }} </router-link
       >
-      <button
-        v-if="playdate.statusType == 'Pending'"
-        v-on:click.prevent="accept(playdate.playDateId)"
-        value="Accept"
-      >
-        Accept
-      </button>
-      <button
-        v-if="playdate.statusType == 'Pending'"
-        v-on:click.prevent="decline(playdate.playDateId)"
-        value="Decline"
-      >
-        Decline
-      </button>
-      <button
-        v-if="playdate.statusType == 'Accepted'"
-        v-on:click.prevent="cancel(playdate.playDateId)"
-        value="Cancel"
-      >
-        Cancel
-      </button>
+  
     </div>
   </div>
 </template>
@@ -59,13 +40,18 @@ import petservice from "@/services/PetService";
 import playdateService from "@/services/PlaydateService";
 
 export default {
-  name: "profile",
-
-  methods: {
-    retrieveUser() {
-      profileservice.profile(this.profile);
+    name: "profile",
+    data(){
+      return{
+        playdates:{}
+      }
     },
-    deletePet(petId) {
+   
+   methods: {
+       retrieveUser(){
+           profileservice.profile(this.profile)
+       },
+       deletePet(petId) {
       if (
         confirm(
           "Are you sure you want to delete this pet? This action cannot be undone"
@@ -90,19 +76,21 @@ export default {
 
         }
   },
-  created() {
-    petservice.getMyPets().then((response) => {
-      if (response.status == 200) {
-        this.$store.commit("SET_PETS", response.data);
-      }
-    }),
-      playdateService.getMyPlaydates().then((response) => {
-        if (response.status == 200) {
-          this.$store.commit("SET_PLAYDATES", response.data);
-        }
-      });
-  },
-};
+
+   created(){
+   petservice.getMyPets().then(response => {
+       if(response.status == 200){
+           this.$store.commit("SET_PETS", response.data);
+       }
+   }),
+   playdateService.getMyPlaydates().then(response => {
+       if(response.status == 200){
+           this.$store.commit("SET_PLAYDATES", response.data);
+       }
+   })
+},
+}
+
 </script>
 
 <style>

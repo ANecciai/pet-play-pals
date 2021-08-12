@@ -68,30 +68,31 @@ public class PlayDateController{
 
 
     @PreAuthorize("isAuthenticated()")
-    @RequestMapping(value = "/playdates/accept", method = RequestMethod.PUT)
-    public void acceptPlayDate(Principal principal, @RequestBody PlayDate playDate, @RequestBody int playDateId){
+    @RequestMapping(value = "/playdates/accept/{id}", method = RequestMethod.PUT)
+    public void acceptPlayDate(Principal principal, @PathVariable int id){
+        PlayDate playDate = playDao.getPlayDateByPlaydateId(id);
         String currentUser = principal.getName();
-        if (currentUser == playDate.getInvitedUsername()){
-            playDao.acceptPlayDate(playDate, playDateId);
+        if (currentUser.equals(playDate.getInvitedUsername())){
+            playDao.acceptPlayDate(id);
         }
     }
 
     @PreAuthorize("isAuthenticated()")
-    @RequestMapping(value = "/playdates/decline", method = RequestMethod.PUT)
-    public void declinePlayDate(Principal principal, @RequestBody PlayDate playDate, @RequestBody int playDateId){
+    @RequestMapping(value = "/playdates/decline/{id}", method = RequestMethod.PUT)
+    public void declinePlayDate(Principal principal, @PathVariable int id){
+        PlayDate playDate = playDao.getPlayDateByPlaydateId(id);
         String currentUser = principal.getName();
-        if (currentUser == playDate.getInvitedUsername()){
-            playDao.declinePlayDate(playDate, playDateId);
+        if (currentUser.equals(playDate.getInvitedUsername())){
+            playDao.declinePlayDate(id);
         }
     }
 
     @PreAuthorize("isAuthenticated()")
-    @RequestMapping(value = "/playdates/cancel", method = RequestMethod.PUT)
-    public void cancelPlayDate(Principal principal, @RequestBody PlayDate playDate, @RequestBody int playDateId){
-        String currentUser = principal.getName();
-        if (currentUser == playDate.getInvitedUsername() || currentUser == playDate.getHostUsername()){
-            playDao.cancelPlayDate(playDate, playDateId);
-        }
+    @RequestMapping(value = "/playdates/expire/{id}", method = RequestMethod.PUT)
+    public void expirePlayDate(@PathVariable int id){
+        PlayDate playDate = playDao.getPlayDateByPlaydateId(id);
+        playDao.expirePlayDate(id);
+
     }
 
 
