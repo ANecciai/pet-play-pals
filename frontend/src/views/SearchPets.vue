@@ -56,17 +56,22 @@ methods: {
         if (this.filters.zipcode != ''){
             petService.getPetByZip(this.filters.zipcode).then(petsByZip =>{
             this.filteredPets = petsByZip.data.filter(pet => {
-                if (pet.species == this.filters.species || this.filters.species == ""){
+                if (pet.species == this.filters.species && pet.username != this.$store.state.user.username || this.filters.species == "" && pet.username != this.$store.state.user.username){
                     return true;
                 }
             })
         }) 
-    }else
+    }else if (this.filters.species != ""){
      this.filteredPets = this.pets.filter(pet => {
-         if (pet.species == this.filters.species){
+         if (pet.species == this.filters.species && pet.username != this.$store.state.user.username ){
              return true;
          }
-     })
+     }) 
+    }  else {this.filteredPets = this.pets.filter(pet => {
+        if (pet.username != this.$store.state.user.username){
+            return true;
+        }
+    });}
     }
 },
 created(){
