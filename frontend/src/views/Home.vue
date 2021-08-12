@@ -8,10 +8,10 @@
       <img v-bind:src="picture.message" id="random-img"/> 
     </div>
     <div>
-    <router-link :to="{ name: 'login' }" tag = button id="button">LOGIN</router-link>
+    <router-link :to="{ name: 'login' }" tag = button id="button" v-if="$store.state.token == ''">LOGIN</router-link>
     </div>
     <div>
-    <router-link :to="{name: 'register'}" tag = button id="button">REGISTER</router-link>
+    <router-link :to="{name: 'register'}" tag = button id="button" v-if="$store.state.token == ''">REGISTER</router-link>
     </div>
   </div>
 </template>
@@ -68,8 +68,8 @@ h2 {
 
 #random-img {
   max-width: 500px;
-  padding: 3px;
-  border:5px solid black;
+  border:5px solid #974D21;
+  outline: 5px solid black;
 }
 
 @media (max-width: 600px) {
