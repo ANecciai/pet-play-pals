@@ -3,16 +3,24 @@
 <div class="search">
     
 <div class="search-params">
-<label>Species: <select v-model="filters.species">
+<label>Species</label>
+</div>
+<div>
+    <select v-model="filters.species">
     <option></option>
     <option value="dog">Dog</option>
     <option value="cat">Cat</option>
     <option value="bird">Bird</option>
     </select>
-</label>
-<label>Zip Code: <input type="text" placeholder="Zip Code" v-model="filters.zipcode" /> </label>
-<button class="searchPets" value="SEARCH" v-on:click.prevent="filterResults">SEARCH</button>
-
+    </div>
+    <div>
+<label>Zip Code</label> 
+    </div>
+    <div>
+    <input type="text" placeholder="Zip Code" v-model="filters.zipcode" />
+    </div>
+    <div>
+<button class="searchPets" value="SEARCH" v-on:click.prevent="filterResults">SEARCH FOR PETS</button>
 </div>
 
 <div class="results">    

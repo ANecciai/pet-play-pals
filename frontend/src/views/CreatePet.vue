@@ -57,7 +57,7 @@
       <input placeholder = "Description" type="textarea" v-model="pet.description"
       />
       </div>
-      <input id="button" type="submit" value="SUBMIT" />
+      <input id="button" type="submit" value="CREATE PET" />
       </div>
     </form>
   </div>
