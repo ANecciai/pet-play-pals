@@ -20,9 +20,11 @@ public interface PlayDateDao {
 
     void deletePlayDate(PlayDate playDate, int playDateId);
 
-    void acceptPlayDate(PlayDate playDate, int playDateId);
+    void acceptPlayDate(int playDateId);
 
-    void declinePlayDate(PlayDate playDate, int playDateId);
+    void declinePlayDate(int playDateId);
 
-    void cancelPlayDate(PlayDate playDate, int playDateId);
+    void cancelPlayDate(int playDateId);
+
+    void expirePlayDate(int playDateId);
 }

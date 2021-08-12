@@ -72,8 +72,8 @@ public class PlayDateController{
     public void acceptPlayDate(Principal principal, @PathVariable int id){
         PlayDate playDate = playDao.getPlayDateByPlaydateId(id);
         String currentUser = principal.getName();
-        if (currentUser == playDate.getInvitedUsername()){
-            playDao.acceptPlayDate(playDate, id);
+        if (currentUser.equals(playDate.getInvitedUsername())){
+            playDao.acceptPlayDate(id);
         }
     }
 
@@ -82,19 +82,17 @@ public class PlayDateController{
     public void declinePlayDate(Principal principal, @PathVariable int id){
         PlayDate playDate = playDao.getPlayDateByPlaydateId(id);
         String currentUser = principal.getName();
-        if (currentUser == playDate.getInvitedUsername()){
-            playDao.declinePlayDate(playDate, id);
+        if (currentUser.equals(playDate.getInvitedUsername())){
+            playDao.declinePlayDate(id);
         }
     }
 
     @PreAuthorize("isAuthenticated()")
-    @RequestMapping(value = "/playdates/cancel/{id}", method = RequestMethod.PUT)
-    public void cancelPlayDate(Principal principal, @PathVariable int id){
+    @RequestMapping(value = "/playdates/expire/{id}", method = RequestMethod.PUT)
+    public void expirePlayDate(@PathVariable int id){
         PlayDate playDate = playDao.getPlayDateByPlaydateId(id);
-        String currentUser = principal.getName();
-        if (currentUser == playDate.getInvitedUsername() || currentUser == playDate.getHostUsername()){
-            playDao.cancelPlayDate(playDate, id);
-        }
+        playDao.expirePlayDate(id);
+
     }
 
 

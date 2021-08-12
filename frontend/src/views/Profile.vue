@@ -26,29 +26,10 @@
         {{ playdate.playdateDate }} &nbsp;|&nbsp; Time:
         {{ playdate.playdateTime }} &nbsp;|&nbsp; Host:
         {{ playdate.hostUsername }} &nbsp;|&nbsp; Invitee:
-        {{ playdate.invitedUsername }}</router-link
+        {{ playdate.invitedUsername }} &nbsp;|&nbsp; Status: 
+        {{ playdate.statusType }} </router-link
       >
-      <button
-        v-if="playdate.statusType == 'Pending'"
-        v-on:click.prevent="accept(playdate.playDateId)"
-        value="Accept"
-      >
-        Accept
-      </button>
-      <button
-        v-if="playdate.statusType == 'Pending'"
-        v-on:click.prevent="decline(playdate.playDateId)"
-        value="Decline"
-      >
-        Decline
-      </button>
-      <button
-        v-if="playdate.statusType == 'Accepted'"
-        v-on:click.prevent="cancel(playdate.playDateId)"
-        value="Cancel"
-      >
-        Cancel
-      </button>
+  
     </div>
   </div>
 </template>
@@ -60,6 +41,11 @@ import playdateService from "@/services/PlaydateService";
 
 export default {
     name: "profile",
+    data(){
+      return{
+        playdates:{}
+      }
+    },
    
    methods: {
        retrieveUser(){
@@ -80,6 +66,7 @@ export default {
       }
     },
   },
+
    created(){
    petservice.getMyPets().then(response => {
        if(response.status == 200){
@@ -91,33 +78,9 @@ export default {
            this.$store.commit("SET_PLAYDATES", response.data);
        }
    })
-   },
-   //playdates(){
-    //   playdate.getPlaydate().then
-   //}
-  
+},
+}
 
-   
-  name: "profile",
-
-  methods: {
-    retrieveUser() {
-      profileservice.profile(this.profile);
-    },
-    
-  created() {
-    petservice.getMyPets().then((response) => {
-      if (response.status == 200) {
-        this.$store.commit("SET_PETS", response.data);
-      }
-    }),
-      playdateService.getMyPlaydates().then((response) => {
-        if (response.status == 200) {
-          this.$store.commit("SET_PLAYDATES", response.data);
-        }
-      });
-  },
-};
 </script>
 
 <style>

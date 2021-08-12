@@ -26,6 +26,9 @@ declinePlaydate(playdateId){
 },
 cancelPlaydate(playdateId){
   return axios.put(`/playdates/cancel/${playdateId}`)
+},
+markExpired(playdateId){
+  return axios.put(`/playdates/expired/${playdateId}`)
 }
 
   

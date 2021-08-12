@@ -90,11 +90,20 @@ export default {
       });
     },
     decline(playdateId) {
-      playdateService.declinePlaydate(playdateId);
+      playdateService.declinePlaydate(playdateId).then((response) => {
+        if (response.status == 200) {
+          this.$router.push(`/profile/${this.$store.state.user.username}`);
+        }
+      });
     },
     cancel(playdateId) {
-      playdateService.cancelPlaydate(playdateId);
+      playdateService.cancelPlaydate(playdateId).then((response) => {
+        if (response.status == 200) {
+          this.$router.push(`/profile/${this.$store.state.user.username}`);
+        }
+      });
     },
+    
   },
   created() {
     playdateService
