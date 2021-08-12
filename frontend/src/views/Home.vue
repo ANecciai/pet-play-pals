@@ -1,6 +1,9 @@
 <template>
   <div class="home">
-    <p>Create a profile to add your pets!</p>
+    <header id="home-header">
+      <h2>A mobile pet play date scheduling app</h2>
+      <p>Search for pets in your area and join Pet Play Pals to create a profile, add your pets, and schedule a play date!</p>
+    </header>
     <div>
       <img v-bind:src="picture.message" id="random-img"/> 
     </div>
@@ -34,6 +37,16 @@ export default {
 </script>
 <style>
 
+
+#home-header {
+  max-width: 400px;
+  margin: auto;
+}
+
+h2 {
+  text-transform: uppercase;
+}
+
 #button{
 
   font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -57,6 +70,12 @@ export default {
   max-width: 500px;
   padding: 3px;
   border:5px solid black;
+}
+
+@media (max-width: 600px) {
+  #random-img {
+    max-width: 80%;
+  }
 }
 
 

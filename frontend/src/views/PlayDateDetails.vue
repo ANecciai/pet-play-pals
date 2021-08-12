@@ -57,7 +57,7 @@
     >
       Cancel
     </button>
-     
+    
     
   </div>
 </template>
@@ -122,9 +122,9 @@ export default {
       .then((response) => {
         this.playdate = response.data;
       });
-  },
+  }
+    }
 
-};
 </script>
 
 <style>
