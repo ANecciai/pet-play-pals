@@ -13,24 +13,54 @@
     </div>
     <router-link tag="button" v-bind:to="{ name: 'pet' }"> ADD PET</router-link>
     <h3>YOUR PLAYDATES</h3>
-    <div
-      v-for="playdate in $store.state.playdates"
-      v-bind:key="playdate.playdateId"
-    >
-      <router-link
-        v-bind:to="{
-          name: 'playdate-details',
-          params: { playdateId: playdate.playDateId },
-        }"
-      >
+     <h4 v-if="pending.length > 0"> Pending Playdates</h4>
+        <div v-for="playdate in pending" v-bind:key="playdate.playdateId">
+      <router-link v-bind:to="{ name: 'playdate-details', params: { playdateId: playdate.playDateId },}">
         {{ playdate.playdateDate }} &nbsp;|&nbsp; Time:
         {{ formatTime(playdate.playdateTime) }} &nbsp;|&nbsp; Host:
         {{ playdate.hostUsername }} &nbsp;|&nbsp; Invitee:
-        {{ playdate.invitedUsername }} &nbsp;|&nbsp; Status: 
-        {{ playdate.statusType }} </router-link
-      >
-  
+        {{ playdate.invitedUsername }}  
+         </router-link>
     </div>
+    <h4 v-if="accepted.length > 0"> Accepted Playdates</h4>
+        <div v-for="playdate in accepted" v-bind:key="playdate.playdateId">
+      <router-link v-bind:to="{ name: 'playdate-details', params: { playdateId: playdate.playDateId },}">
+        {{ playdate.playdateDate }} &nbsp;|&nbsp; Time:
+        {{ formatTime(playdate.playdateTime) }} &nbsp;|&nbsp; Host:
+        {{ playdate.hostUsername }} &nbsp;|&nbsp; Invitee:
+        {{ playdate.invitedUsername }} 
+         </router-link>
+    </div>
+   <h4 v-if="declined.length > 0"> Declined Playdates</h4>
+        <div v-for="playdate in declined" v-bind:key="playdate.playdateId">
+      <router-link v-bind:to="{ name: 'playdate-details', params: { playdateId: playdate.playDateId },}">
+        {{ playdate.playdateDate }} &nbsp;|&nbsp; Time:
+        {{ formatTime(playdate.playdateTime) }} &nbsp;|&nbsp; Host:
+        {{ playdate.hostUsername }} &nbsp;|&nbsp; Invitee:
+        {{ playdate.invitedUsername }} 
+         </router-link>
+    </div>
+   <h4 v-if="canceled.length > 0"> Canceled Playdates</h4>
+        <div v-for="playdate in canceled" v-bind:key="playdate.playdateId">
+      <router-link v-bind:to="{ name: 'playdate-details', params: { playdateId: playdate.playDateId },}">
+        {{ playdate.playdateDate }} &nbsp;|&nbsp; Time:
+        {{ formatTime(playdate.playdateTime) }} &nbsp;|&nbsp; Host:
+        {{ playdate.hostUsername }} &nbsp;|&nbsp; Invitee:
+        {{ playdate.invitedUsername }}
+         </router-link>
+    </div>
+   <h4 v-if="expired.length > 0"> Past Playdates</h4>
+        <div v-for="playdate in expired" v-bind:key="playdate.playdateId">   
+      <router-link v-bind:to="{ name: 'playdate-details', params: { playdateId: playdate.playDateId },}">
+        {{ playdate.playdateDate }} &nbsp;|&nbsp; Time:
+        {{ formatTime(playdate.playdateTime) }} &nbsp;|&nbsp; Host:
+        {{ playdate.hostUsername }} &nbsp;|&nbsp; Invitee:
+        {{ playdate.invitedUsername }} 
+         </router-link>
+    </div>
+   
+   
+
   </div>
 </template>
 
@@ -76,6 +106,38 @@ export default {
 
         }
   },
+  computed: {
+      accepted(){
+          return this.$store.state.playdates.filter(
+              playdate =>playdate.statusType == "Accepted"
+          )
+
+      },
+      canceled(){
+          return this.$store.state.playdates.filter(
+              playdate =>playdate.statusType == "Canceled"
+          )
+
+      },
+      declined(){
+          return this.$store.state.playdates.filter(
+              playdate =>playdate.statusType == "Declined"
+          )
+
+      },
+      expired(){
+          return this.$store.state.playdates.filter(
+              playdate =>playdate.statusType == "Expired"
+          )
+
+      },
+      pending(){
+          return this.$store.state.playdates.filter(
+              playdate =>playdate.statusType == "Pending"
+          )
+
+      },
+  },
 
    created(){
    petservice.getMyPets().then(response => {
@@ -102,5 +164,8 @@ h3 {
   padding-bottom: 2px;
   padding-left: 5px;
   padding-right: 5px;
+}
+h4{
+    text-decoration:underline
 }
 </style>
