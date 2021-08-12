@@ -86,6 +86,15 @@ public class PlayDateController{
             playDao.declinePlayDate(id);
         }
     }
+    @PreAuthorize("isAuthenticated()")
+    @RequestMapping(value = "/playdates/cancel/{id}", method = RequestMethod.PUT)
+    public void cancelPlayDate(Principal principal, @PathVariable int id){
+        PlayDate playDate = playDao.getPlayDateByPlaydateId(id);
+        String currentUser = principal.getName();
+        if (currentUser.equals(playDate.getInvitedUsername())){
+            playDao.cancelPlayDate(id);
+        }
+    }
 
     @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/playdates/expire/{id}", method = RequestMethod.PUT)
