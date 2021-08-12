@@ -4,6 +4,7 @@
       <img id="pet-image" v-if="pet.species == 'dog'" src="@/images/clipart 4.jpg"/>
       <img id="pet-image" v-if="pet.species == 'cat'" src="@/images/clipart 2.jpg"/>
       <img id="pet-image" v-if="pet.species == 'bird'" src="@/images/clipart 3.jpg"/>
+      <p>Owner: <router-link v-bind:to="{name: 'user-details', params: { username: pet.username }}">{{pet.username}}</router-link></p>
       <p>Gender: {{pet.gender}}</p>
       <p>Age: {{pet.age}}</p>
       <p>Species: {{pet.species}}</p>
